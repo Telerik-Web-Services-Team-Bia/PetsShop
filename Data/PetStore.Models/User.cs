@@ -7,6 +7,12 @@
 
     public class User : IdentityUser
     {
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
+        public int Age { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager, string authenticationType)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
