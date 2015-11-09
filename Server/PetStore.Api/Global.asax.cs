@@ -8,6 +8,7 @@
         protected void Application_Start()
         {
             DatabaseConfig.Initialize();
+            AutoMapperConfig.RegisterMappings();
             GlobalConfiguration.Configure(WebApiConfig.Register);
         }
     }
