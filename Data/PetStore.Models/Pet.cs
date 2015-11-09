@@ -26,6 +26,10 @@
 
         public virtual Species Species { get; set; }
 
+        public int UserId { get; set; }
+
+        public virtual User User { get; set; }
+
         public DateTime BirthDate { get; set; }
 
         public bool IsVaccinated { get; set; }

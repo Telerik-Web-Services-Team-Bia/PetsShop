@@ -1,11 +1,9 @@
-﻿using System;
-
-namespace PetStore.Api.Models
+﻿namespace PetStore.Api.Models
 {
-    public class PetResponseModel
-    {
-        public int Id { get; set; }
+    using System;
 
+    public class PetRequestModel
+    {
         public string Name { get; set; }
 
         public string Color { get; set; }
@@ -21,8 +19,6 @@ namespace PetStore.Api.Models
         public string Description { get; set; }
 
         public decimal Price { get; set; }
-
-        public double Rating { get; set; }
 
         public byte[] Image { get; set; }
     }
