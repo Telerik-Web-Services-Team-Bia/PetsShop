@@ -28,16 +28,14 @@
             this.colors = colors;
         }
 
-        public IHttpActionResult GetAllPets()
-        {
-            var result = pets.All().ProjectTo<PetResponseModel>();
-
-            return this.Ok(result);
-        }
-
-        public IHttpActionResult GetAllPets(string sortBy)
+        public IHttpActionResult GetAllPets(string category = null, string sortBy = "ratingDesc")
         {
             var result = this.pets.All();
+
+            if (category != null)
+            {
+                result = result.Where(p => p.Species.Category.Name == category);
+            }
 
             switch (sortBy)
             {
