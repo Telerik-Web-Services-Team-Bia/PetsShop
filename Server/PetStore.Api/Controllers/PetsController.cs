@@ -70,68 +70,65 @@
             {
                 return this.BadRequest(this.ModelState);
             }
+
+            var currentPetSpecies = new Species();
+            var species = this.species.All().Where(s => s.Name == pet.Species).ToList();
+
+            if (species.Count == 0)
+            {
+                var currentPetCategory = new Category();
+                var categories = this.categories.All().Where(c => c.Name == pet.Category).ToList();
+
+                if (categories.Count == 0)
+                {
+                    currentPetCategory.Name = pet.Category;
+                }
+                else
+                {
+                    currentPetCategory = categories[0];
+                }
+
+                currentPetSpecies.Category = currentPetCategory;
+                currentPetSpecies.Name = pet.Species;
+            }
             else
             {
-
-                var currentPetSpecies = new Species();
-                var species = this.species.All().Where(s => s.Name == pet.Species).ToList();
-
-                if (species.Count == 0)
-                {
-                    var currentPetCategory = new Category();
-                    var categories = this.categories.All().Where(c => c.Name == pet.Category).ToList();
-
-                    if (categories.Count == 0)
-                    {
-                        currentPetCategory.Name = pet.Category;
-                    }
-                    else
-                    {
-                        currentPetCategory = categories[0];
-                    }
-
-                    currentPetSpecies.Category = currentPetCategory;
-                    currentPetSpecies.Name = pet.Species;
-                }
-                else
-                {
-                    currentPetSpecies = species[0];
-                }
-
-                var currentPetColor = new Color();
-                var colors = this.colors.All().Where(c => c.Name == pet.Color).ToList();
-
-                if (colors.Count == 0)
-                {
-                    currentPetColor.Name = pet.Color;
-                }
-                else
-                {
-                    currentPetColor = colors[0];
-                }
-
-                var currentPet = new Pet()
-                {
-                    Name = pet.Name,
-                    BirthDate = pet.BirthDate,
-                    Species = currentPetSpecies,
-                    Description = pet.Description,
-                    IsVaccinated = pet.IsVaccinated,
-                    Price = pet.Price,
-                    Color = currentPetColor,
-                    UserId = User.Identity.GetUserId()
-                };
-
-                if (pet.Image != null)
-                {
-                    currentPet.Image = new PetImage() { Image = pet.Image };
-                }
-
-                this.pets.Add(currentPet);
-                this.pets.SaveChanges();
-
-                return this.Created(this.Url.ToString(), currentPet.Id);
+                currentPetSpecies = species[0];
             }
+
+            var currentPetColor = new Color();
+            var colors = this.colors.All().Where(c => c.Name == pet.Color).ToList();
+
+            if (colors.Count == 0)
+            {
+                currentPetColor.Name = pet.Color;
+            }
+            else
+            {
+                currentPetColor = colors[0];
+            }
+
+            var currentPet = new Pet()
+            {
+                Name = pet.Name,
+                BirthDate = pet.BirthDate,
+                Species = currentPetSpecies,
+                Description = pet.Description,
+                IsVaccinated = pet.IsVaccinated,
+                Price = pet.Price,
+                Color = currentPetColor,
+                UserId = User.Identity.GetUserId()
+            };
+
+            if (pet.Image != null)
+            {
+                currentPet.Image = new PetImage() { Image = pet.Image };
+            }
+
+            this.pets.Add(currentPet);
+            this.pets.SaveChanges();
+
+            return this.Created(this.Url.ToString(), currentPet.Id);
         }
 
         [Authorize]
@@ -143,18 +140,16 @@
             {
                 return this.NotFound();
             }
-            else
+
+            if (this.User.Identity.Name == pet.User.UserName)
             {
-                if (this.User.Identity.Name == pet.User.UserName)
-                {
-                    this.pets.Delete(pet);
-                    this.pets.SaveChanges();
+                this.pets.Delete(pet);
+                this.pets.SaveChanges();
 
-                    return this.Ok(pet);
-                }
-
-                return this.Unauthorized();
+                return this.Ok(pet);
             }
+
+            return this.Unauthorized();
         }
     }
 }
