@@ -21,6 +21,7 @@
     using PetStore.Models;
 
     [Authorize]
+    
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController
     {
@@ -320,6 +321,7 @@
         }
 
         // POST api/Account/Register
+        [EnableCors("*","*","*")]
         [AllowAnonymous]
         [Route("Register")]
         public async Task<IHttpActionResult> Register(RegisterBindingModel model)
