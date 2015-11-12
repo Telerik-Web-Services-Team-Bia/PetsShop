@@ -1,0 +1,107 @@
+<div class="container" id="offer-container">
+
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">Offer details</h3>
+			</div>
+			<div class="panel-body">
+				<p>
+					<div class="row">
+						<div class="col-md-6 container-fluid" id="image-container">
+							<img src="{{Image}}" alt="{{Species}} {{Category}}" class="img-responsive">
+						</div>
+						<div class="col-md-6" id="info-container">
+							<div class="row">
+								<div class="container-fluid">
+									<div class="row">
+										<h3>
+											<span class="col-md-5 col-md-offset-1">Name:</span>
+											<span class="col-md-3">{{Name}}</span>
+										</h3>
+									</div>
+									<div class="row">
+										<h3>
+											<span class="col-md-5 col-md-offset-1">Category:</span>
+											<span class="col-md-3">{{Category}}</span>
+										</h3>
+									</div>
+									<div class="row">
+										<h3>
+											<span class="col-md-5 col-md-offset-1">Species:</span>
+											<span class="col-md-3">{{Species}}</span>
+										</h3>
+									</div>
+									<div class="row">
+										<h3>
+											<span class="col-md-5 col-md-offset-1">Color:</span>
+											<span class="col-md-3">{{Color}}</span>
+										</h3>
+									</div>
+									<div class="row">
+										<h3>
+											<span class="col-md-5 col-md-offset-1">Vaccinated:</span>
+											{{#if isVaccinated}}
+												<span class="col-md-3">Yes</span>
+											{{else}}
+												<span class="col-md-3">No</span>
+											{{/if}}
+											
+										</h3>
+									</div>
+									<div class="row">
+										<h3>
+											<span class="col-md-5 col-md-offset-1">BirthDate:</span>
+											<span class="col-md-3">{{BirthDate}}</span>
+										</h3>
+									</div>
+									<div class="row">
+										<h3>
+											<span class="col-md-5 col-md-offset-1">Price:</span>
+											<span class="col-md-3">${{Price}}</span>
+										</h3>
+									</div>
+									<div class="row">
+										<h3>
+											<span class="col-md-3 col-md-offset-1">Seller:</span>
+										</h3>
+										<div class="col-md-7" id="seller-info"></div>
+									</div>												
+								</div>
+							</div>
+						</div>
+					</div>
+				</p>
+				<h2>Description</h2>
+				<hr>
+				<p class="text-large">{{Description}}</p>
+				<div class="rateit bigstars" data-rateit-value="{{Rating}}" data-rateit-ispreset="true" data-rateit-resetable="false"  data-rateit-starwidth="32" data-rateit-starheight="32"></div>
+				<hr>			
+				<button class="btn btn-primary btn-xs" id="share">Share of Facebook</button>
+			</div>
+		</div>
+
+	<!-- /*<script type="text/x-mustache-template" id="seller-details">
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="#username" data-toggle="tab" aria-expanded="false">Username</a></li>
+			<li ><a href="#email" data-toggle="tab" aria-expanded="true">Email</a></li>
+			<li ><a href="#phone" data-toggle="tab" aria-expanded="true">Phone</a></li>					
+		</ul>
+		<div id="myTabContent" class="tab-content">
+			<div class="tab-pane fade active in" id="username">
+				<p class="lead">{{firstName}} {{lastName}}</p>
+			</div>
+			<div class="tab-pane fade" id="email">
+				<p class="lead">{{email}}</p>
+			</div>
+			<div class="tab-pane fade" id="phone">
+				<p class="lead">
+					{{#phone}}
+						{{phone}}
+					{{/phone}}
+					{{^phone}}
+						Not available
+					{{/phone}}
+				</p>
+		</div>
+	</script>*/  -->
+</div>

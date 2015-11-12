@@ -8,11 +8,11 @@
             });
 
         this.get('#/home', homeController.all);
+        this.get('#/pets/:id', petsController.details);
         this.get('#/register', usersController.register);
-        this.get('#/offers', threadsController.all);
+        this.get('#/pets', petsController.all);
         this.get('#/threads/add', threadsController.add);
-        this.get('#/threads/:id', threadsController.details);
-        this.get('#/threads/:id/messages/add', threadsController.addMessage);
+        
 
         this.get('#/users', usersController.all);
         this.get('#/users/:id', usersController.register);

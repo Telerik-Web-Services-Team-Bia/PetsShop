@@ -60,7 +60,7 @@
 
         public IHttpActionResult GetPet(int id)
         {
-            var result = this.pets.All().Where(p => p.Id == id).ProjectTo<PetResponseModel>();
+            var result = this.pets.All().Where(p => p.Id == id).ProjectTo<PetResponseModel>().First();
 
             return this.Ok(result);
         }

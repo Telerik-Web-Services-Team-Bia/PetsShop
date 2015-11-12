@@ -6,14 +6,16 @@ var data = (function () {
     const USERNAME_STORAGE_KEY = 'username-key',
         AUTH_KEY_STORAGE_KEY = 'auth-key-key';
 
-    var baseUrl = "http://localhost:8089/api/";
+    var baseUrl = "https://microsoft-apiappd9f14ef7f696440a97a2766f35ce4f77.azurewebsites.net/";
 
     function userLogin(user) {
-        var primi = new Promise(function (resolve, reject) {
-            var reqUser = {
+        var reqUser = {
                 username: user.username,
                 password: user.password
             };
+
+        var primi = new Promise(function (resolve, reject) {
+            
             $.ajax({
                 url: baseUrl + "Account/login",
                 method: 'PUT',
@@ -81,71 +83,37 @@ var data = (function () {
 
 
 
-    function threadsGet() {
-        var promise = new Promise(function (resolve, reject) {
-            $.ajax({
-                url: 'api/pets',
-                method: 'GET',
-                contentType: 'application/json',
-                success: function (res) {
-                    resolve(res);
-                }
-            })
-        });
-        return promise;
+
+// Example -------------------------------------------------------------------------------------
+    function petsGet() {
+        return jsonRequester.get(baseUrl + 'api/Pets')
+          .then(function(res) {
+            return res;
+          });
     }
 
+    function petsAdd(pet) {
+        var options = {
+          data: pet,
+          headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem(LOCAL_STORAGE_AUTHKEY_KEY),           
+          }
+        };
 
-
-    function threadsAdd(title) {
-        var promise = new Promise(function (resolve, reject) {
-            var body = {
-                title
-            };
-            console.log(body);
-            $.ajax({
-                url: 'api/threads',
-                method: 'POST',
-                data: JSON.stringify(body),
-                headers: {
-                    'x-authkey': localStorage.getItem(AUTH_KEY_STORAGE_KEY)
-                },
-                contentType: 'application/json',
-                success: function (res) {
-                    resolve(res);
-                }
-            })
-        });
-        return promise;
+        return jsonRequester.post('api/Pets', options)
+          .then(function(resp) {
+            return resp;
+          });
     }
 
-    function threadById(id) {
-        var promise = new Promise(function (resolve, reject) {
-            $.getJSON("api/threads/" + id, function (res) {
-                resolve(res);
-            });
-        });
-        return promise;
-
+    function petById(id) {
+        id = id.substring(1);
+        return jsonRequester.get(baseUrl + 'api/Pets/' + id)
+          .then(function(res) {
+            return res;
+          });
     }
-
-    function threadsAddMessage(threadId, message) {
-        var qpromise = new Promise(function(resolve, reject) {
-            $.ajax({
-                url: "api/threads/" + threadId + "/messages",
-                method: 'POST',
-                data: JSON.stringify(message),
-                contentType: 'application/json',
-                headers: {
-                    'x-authkey': localStorage.getItem(AUTH_KEY_STORAGE_KEY)
-                },
-                success: function(res) {
-                    resolve(res);
-                }
-            });
-        });
-        return qpromise;
-    }
+// ----------------------------------------------------------------------------------------------    
 
     function usersFind() {
 
@@ -161,11 +129,10 @@ var data = (function () {
             current: getCurrentUser,
             username: returnUsername
         },
-        threads: {
-            get: threadsGet,
-            add: threadsAdd,
-            getById: threadById,
-            addMessage: threadsAddMessage
+        pets: {
+            get: petsGet,
+            add: petsAdd,
+            getById: petById
         }
     };
 }());

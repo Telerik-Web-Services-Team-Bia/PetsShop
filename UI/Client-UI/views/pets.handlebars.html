@@ -1,0 +1,59 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-3" id="category-menu-container">
+            <p class="lead">Categories</p>
+            <!-- <script type="text/x-mustache-template" id="category-menu">
+                <div class="list-group">
+                    <a href="#/offers/:myOffers" class="list-group-item">My offers</a>
+                    {{#.}}
+                        <a href="#/offers/:{{.}}" class="list-group-item">{{.}}</a> 
+                    {{/.}}
+                </div>
+            </script> -->
+        </div>
+        <div class="col-md-9">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <div class="col-lg-2 pull-right">
+                        <select class="form-control" id="sortBy">
+                            <option value="newest">Newest</option>
+                            <option value="oldest">Oldest</option>
+                            <option value="priceAsc">Price ↑</option>
+                            <option value="priceDesc">Price ↓</option>
+                            <option value="ratingAsc">Rating ↑</option>
+                            <option value="ratingDesc">Rating ↓</option>
+                        </select>
+                    </div>
+                    <label for="sortBy" class="col-lg-2 control-label pull-right">Sort by</label>
+                </div>
+            </div>
+            <div class="row" id="offers-container">
+            </div>
+            {{#if this}}
+                {{#each this}}
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                        <div class="thumbnail">
+                            <img src="{{Image}}" alt="{{Species}} {{Category}}"> 
+                            <div class="caption">
+                                <h4 class="pull-right">${{Price}}</h4>
+                                <h4><a href="#/pets/:{{Id}}">{{Name}} - {{Species}}</a></h4> 
+                                {{#if Description}}
+                                    <p>{{Description}}</p>
+                                {{else}} 
+                                    <p>No description available</p>
+                                {{/if}}
+                            </div>
+                            <div class="ratings">
+                                <span class="rateit" data-rateit-resetable="false" data-rateit-value="{{Rating}}" data-rateit-ispreset="true" data-rateit-readonly="true">
+                                </span>
+                                <span id="numberOfRatings">{{Rating}}</span> 
+                            </div>
+                        </div>
+                    </div>
+                {{/each}}
+            {{else}}
+				<h2 class="h2" style="text-align: center">No threads !</h2>
+			{{/if}}
+        </div>
+    </div>
+</div>
