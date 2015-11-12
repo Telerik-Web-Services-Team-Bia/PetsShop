@@ -32,10 +32,12 @@ var data = (function () {
     function userRegister(user) {
         var prom = new Promise(function (resolve, reject) {
             var reqUser = {
-                username: user.username,
+                email: user.email,
                 password: user.password,
                 confirmPassword: user.confirmPassword,
-                age: user.age
+                firstName : user.firstName,
+                lastName : user.lastName
+                //age: user.age
             };
             $.ajax({
                 url: baseUrl + "Account/Register",
@@ -81,16 +83,19 @@ var data = (function () {
 
     function threadsGet() {
         var promise = new Promise(function (resolve, reject) {
-            $.getJSON('api/threads', function (res) {
-                res.result = res.result.map(function(thread){
-                    thread.postDate = moment(new Date(thread.postDate)).fromNow();
-                    return thread;
-                });
-                resolve(res);
-            });
+            $.ajax({
+                url: 'api/pets',
+                method: 'GET',
+                contentType: 'application/json',
+                success: function (res) {
+                    resolve(res);
+                }
+            })
         });
         return promise;
     }
+
+
 
     function threadsAdd(title) {
         var promise = new Promise(function (resolve, reject) {

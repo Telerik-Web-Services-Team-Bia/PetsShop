@@ -7,8 +7,12 @@ var usersController = function() {
 
                 $('#register-form-btn').on('click', function() {
                     var user = {
-                        username: $('#username').val(),
-                        password: $('#pass').val()
+                        email: $('#email').val(),
+                        password: $('#pass').val(),
+                        confirmPassword: $('#confirmPassword').val(),
+                        firstName: $('#first-name').val(),
+                        lastName: $('#last-name').val(),
+                        age: $('#age').val()
                     };
                     data.users.register(user)
                         .then(function() {

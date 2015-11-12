@@ -2,12 +2,13 @@
 {
     using System.Linq;
     using System.Web.Http;
-
+    using System.Web.Http.Cors;
     using AutoMapper.QueryableExtensions;
     using Data.Repositories;
     using Models;
     using PetStore.Models;
 
+    [EnableCors("*", "*", "*")]
     public class CategoriesController : ApiController
     {
         private IRepository<Category> categories;

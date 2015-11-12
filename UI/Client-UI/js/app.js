@@ -9,7 +9,7 @@
 
         this.get('#/home', homeController.all);
         this.get('#/register', usersController.register);
-        this.get('#/threads', threadsController.all);
+        this.get('#/offers', threadsController.all);
         this.get('#/threads/add', threadsController.add);
         this.get('#/threads/:id', threadsController.details);
         this.get('#/threads/:id/messages/add', threadsController.addMessage);

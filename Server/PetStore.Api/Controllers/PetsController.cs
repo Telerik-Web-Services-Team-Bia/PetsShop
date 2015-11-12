@@ -7,7 +7,9 @@
     using System.Linq;
     using System.Web.Http;
     using Microsoft.AspNet.Identity;
+    using System.Web.Http.Cors;
 
+    [EnableCors("*", "*", "*")]
     [RoutePrefix("api/pets")]
     public class PetsController : ApiController
     {
