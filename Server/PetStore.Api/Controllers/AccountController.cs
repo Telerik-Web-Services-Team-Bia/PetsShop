@@ -21,7 +21,7 @@
     using PetStore.Models;
 
     [Authorize]
-    
+    [EnableCors("*", "*", "*")]
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController
     {
@@ -70,6 +70,7 @@
 
         // POST api/Account/Logout
         [Route("Logout")]
+        [EnableCors("*", "*", "*")]
         public IHttpActionResult Logout()
         {
             Authentication.SignOut(CookieAuthenticationDefaults.AuthenticationType);
@@ -138,6 +139,7 @@
 
         // POST api/Account/SetPassword
         [Route("SetPassword")]
+        [EnableCors("*", "*", "*")]
         public async Task<IHttpActionResult> SetPassword(SetPasswordBindingModel model)
         {
             if (!ModelState.IsValid)
@@ -157,6 +159,7 @@
 
         // POST api/Account/AddExternalLogin
         [Route("AddExternalLogin")]
+        [EnableCors("*", "*", "*")]
         public async Task<IHttpActionResult> AddExternalLogin(AddExternalLoginBindingModel model)
         {
             if (!ModelState.IsValid)
@@ -195,6 +198,7 @@
 
         // POST api/Account/RemoveLogin
         [Route("RemoveLogin")]
+        [EnableCors("*", "*", "*")]
         public async Task<IHttpActionResult> RemoveLogin(RemoveLoginBindingModel model)
         {
             if (!ModelState.IsValid)
@@ -226,6 +230,7 @@
         [OverrideAuthentication]
         [HostAuthentication(DefaultAuthenticationTypes.ExternalCookie)]
         [AllowAnonymous]
+        [EnableCors("*", "*", "*")]
         [Route("ExternalLogin", Name = "ExternalLogin")]
         public async Task<IHttpActionResult> GetExternalLogin(string provider, string error = null)
         {
@@ -281,6 +286,7 @@
 
         // GET api/Account/ExternalLogins?returnUrl=%2F&generateState=true
         [AllowAnonymous]
+        [EnableCors("*", "*", "*")]
         [Route("ExternalLogins")]
         public IEnumerable<ExternalLoginViewModel> GetExternalLogins(string returnUrl, bool generateState = false)
         {

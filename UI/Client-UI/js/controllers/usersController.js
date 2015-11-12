@@ -12,7 +12,7 @@ var usersController = function() {
                         confirmPassword: $('#confirmPassword').val(),
                         firstName: $('#first-name').val(),
                         lastName: $('#last-name').val(),
-                        age: $('#age').val()
+                        //age: $('#age').val()
                     };
                     data.users.register(user)
                         .then(function() {

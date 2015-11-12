@@ -7,6 +7,7 @@
     using PetStore.Api.Models;
     using Data;
     using PetStore.Models;
+    using System.Web.Http.Cors;
 
     public class ApplicationUserManager : UserManager<User>
     {
@@ -15,6 +16,7 @@
         {
         }
 
+        [EnableCors("*", "*", "*")]
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
         {
             var manager = new ApplicationUserManager(new UserStore<User>(context.Get<PetStoreDbContext>()));

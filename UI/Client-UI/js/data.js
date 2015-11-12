@@ -9,22 +9,25 @@ var data = (function () {
     var baseUrl = "https://microsoft-apiappd9f14ef7f696440a97a2766f35ce4f77.azurewebsites.net/";
 
     function userLogin(user) {
-        var reqUser = {
-                username: user.username,
-                password: user.password
-            };
-
         var primi = new Promise(function (resolve, reject) {
-            
+            var reqUser = {
+                username: user.email,
+                password: user.password,
+                grant_type: 'password'
+            };
             $.ajax({
                 url: baseUrl + "Account/login",
-                method: 'PUT',
-                contentType: 'application/json',
+                method: 'POST',
+                contentType: 'application/x-www-form-urlencoded; charset=utf-8',
                 data: JSON.stringify(reqUser),
                 success: function (user) {
                     localStorage.setItem(USERNAME_STORAGE_KEY, user.username);
-                    localStorage.setItem(AUTH_KEY_STORAGE_KEY, user.authKey);
+                    localStorage.setItem(AUTH_KEY_STORAGE_KEY, user.access_token);
+                    console.log('success');
                     resolve(user);
+                },
+                error: function (err) {
+                    console.log('error')
                 }
             });
         });
