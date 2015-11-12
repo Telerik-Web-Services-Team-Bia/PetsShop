@@ -18,6 +18,7 @@
             this.categories = categories;
         }
 
+        [EnableCors("*", "*", "*")]
         public IHttpActionResult GetAllCategories()
         {
             var result = this.categories.All().ProjectTo<CategoryResponseModel>();
@@ -33,6 +34,7 @@
             return this.Ok(result);
         }
 
+        [EnableCors("*", "*", "*")]
         public IHttpActionResult Post(CategoryResponseModel category)
         {
             if (!this.ModelState.IsValid)

@@ -11,18 +11,23 @@ var data = (function () {
     function userLogin(user) {
         var primi = new Promise(function (resolve, reject) {
             var reqUser = {
-                username: user.username,
-                password: user.password
+                username: user.email,
+                password: user.password,
+                grant_type: 'password'
             };
             $.ajax({
                 url: baseUrl + "Account/login",
-                method: 'PUT',
-                contentType: 'application/json',
+                method: 'POST',
+                contentType: 'application/x-www-form-urlencoded; charset=utf-8',
                 data: JSON.stringify(reqUser),
                 success: function (user) {
                     localStorage.setItem(USERNAME_STORAGE_KEY, user.username);
-                    localStorage.setItem(AUTH_KEY_STORAGE_KEY, user.authKey);
+                    localStorage.setItem(AUTH_KEY_STORAGE_KEY, user.access_token);
+                    console.log('success');
                     resolve(user);
+                },
+                error: function (err) {
+                    console.log('error')
                 }
             });
         });

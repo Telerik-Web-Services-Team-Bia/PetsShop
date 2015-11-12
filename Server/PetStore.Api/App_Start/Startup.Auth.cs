@@ -9,13 +9,16 @@
     using PetStore.Api.Providers;
     using PetStore.Api.Models;
     using Data;
+    using System.Web.Http.Cors;
 
     public partial class Startup
     {
         public static OAuthAuthorizationServerOptions OAuthOptions { get; private set; }
 
         public static string PublicClientId { get; private set; }
-        
+
+
+        [EnableCors("*", "*", "*")]
         public void ConfigureAuth(IAppBuilder app)
         {
             // Configure the db context and user manager to use a single instance per request
@@ -29,6 +32,7 @@
 
             // Configure the application for OAuth based flow
             PublicClientId = "self";
+
             OAuthOptions = new OAuthAuthorizationServerOptions
             {
                 TokenEndpointPath = new PathString("/api/Account/login"),

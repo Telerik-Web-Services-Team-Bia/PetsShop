@@ -30,6 +30,7 @@
             this.colors = colors;
         }
 
+        [EnableCors("*", "*", "*")]
         public IHttpActionResult GetAllPets(string category = null, string sortBy = "ratingDesc")
         {
             var result = this.pets.All();
@@ -58,6 +59,7 @@
             }
         }
 
+        [EnableCors("*", "*", "*")]
         public IHttpActionResult GetPet(int id)
         {
             var result = this.pets.All().Where(p => p.Id == id).ProjectTo<PetResponseModel>();
@@ -66,6 +68,7 @@
         }
 
         [Authorize]
+        [EnableCors("*", "*", "*")]
         public IHttpActionResult Post(PetResponseModel pet)
         {
             if (!this.ModelState.IsValid)
@@ -134,6 +137,7 @@
         }
 
         [Authorize]
+        [EnableCors("*", "*", "*")]
         public IHttpActionResult Delete(int id)
         {
             var pet = this.pets.All().Where(p => p.Id == id).FirstOrDefault();

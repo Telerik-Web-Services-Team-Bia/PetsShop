@@ -43,14 +43,14 @@
             $('#username-nav').hide();
             $('#btn-login').on('click', function () {
                 var user = {
-                    username: $('#tb-user').val(),
+                    email: $('#tb-user').val(),
                     password: $('#tb-pass').val()
                 };
                 data.users.login(user)
                     .then(function () {
                         location = '#/';
                         document.location.reload(true);
-                        toastr.success('Hello');
+                        //toastr.success('Hello');
                     });
             });
         }
