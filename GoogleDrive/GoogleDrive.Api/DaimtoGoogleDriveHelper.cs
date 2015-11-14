@@ -5,9 +5,11 @@
     using Google.Apis.Drive.v2;
     using Google.Apis.Drive.v2.Data;
     using System.Security.Authentication;
+    using Validation;
 
     public class DaimtoGoogleDriveHelper
     {
+        private const string ErrorMessage = "An error occurred: ";
         /// <summary>
         /// Download a file
         /// Documentation: https://developers.google.com/drive/v2/reference/files/get
@@ -18,18 +20,19 @@
         /// <returns></returns>
         public static bool DownloadFile(DriveService service, File fileResource, string saveTo)
         {
-            if (!string.IsNullOrEmpty(fileResource.DownloadUrl))
+            var downloadUrl = fileResource.DownloadUrl;
+            if (!string.IsNullOrEmpty(downloadUrl))
             {
                 try
                 {
-                    var x = service.HttpClient.GetByteArrayAsync(fileResource.DownloadUrl);
+                    var x = service.HttpClient.GetByteArrayAsync(downloadUrl);
                     byte[] arrBytes = x.Result;
                     System.IO.File.WriteAllBytes(saveTo, arrBytes);
                     return true;
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("An error occurred: " + e.Message);
+                    Console.WriteLine(ErrorMessage + e.Message);
                     return false;
                 }
             }
@@ -52,37 +55,14 @@
         {
             if (!string.IsNullOrEmpty(id) && !string.IsNullOrEmpty(saveTo))
             {
-                try
-                {
-                    File fileResource = service.Files.Get(id).Execute();
-                    return DownloadFile(service, fileResource, saveTo);
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine("An error occurred: " + e.Message);
-                    return false;
-                }
+                File fileResource = service.Files.Get(id).Execute();
+                return DownloadFile(service, fileResource, saveTo);
             }
             else
             {
                 // The file doesn't have any content stored on Drive.
                 return false;
             }
-        }
-
-        // TODO: Remove?
-        private static string GetMimeType(string fileName)
-        {
-            string mimeType = "application/unknown";
-            string extension = System.IO.Path.GetExtension(fileName).ToLower();
-            Microsoft.Win32.RegistryKey regKey = Microsoft.Win32.Registry.ClassesRoot.OpenSubKey(extension);
-
-            if (regKey != null && regKey.GetValue("Content Type") != null)
-            {
-                mimeType = regKey.GetValue("Content Type").ToString();
-            }
-
-            return mimeType;
         }
 
         /// <summary>
@@ -97,12 +77,11 @@
         ///          If the upload fails returns null</returns>
         public static File UploadFile(DriveService service, string uploadFile, string parent)
         {
-
-            if (System.IO.File.Exists(uploadFile))
+            if (Validator.IsFileExisting(uploadFile))
             {
                 File body = new File();
                 body.Title = System.IO.Path.GetFileName(uploadFile);
-                body.Description = "File uploaded by Diamto Drive Sample";
+                body.Description = "File uploaded by Pet Store api";
                 body.MimeType = GetMimeType(uploadFile);
                 body.Parents = new List<ParentReference>() { new ParentReference() { Id = parent } };
 
@@ -118,15 +97,12 @@
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("An error occurred: " + e.Message);
+                    Console.WriteLine(ErrorMessage + e.Message);
                     return null;
                 }
             }
-            else
-            {
-                Console.WriteLine("File does not exist: " + uploadFile);
-                return null;
-            }
+
+            return null;
         }
 
         /// <summary>
@@ -142,11 +118,11 @@
         ///          If the upload fails returns null</returns>
         public static File UpdateFile(DriveService service, string uploadFile, string parent, string fileId)
         {
-            if (System.IO.File.Exists(uploadFile))
+            if (Validator.IsFileExisting(uploadFile))
             {
                 File body = new File();
                 body.Title = System.IO.Path.GetFileName(uploadFile);
-                body.Description = "File updated by Diamto Drive Sample";
+                body.Description = "File updated by Pet Store api";
                 body.MimeType = GetMimeType(uploadFile);
                 body.Parents = new List<ParentReference>() { new ParentReference() { Id = parent } };
 
@@ -161,15 +137,12 @@
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("An error occurred: " + e.Message);
+                    Console.WriteLine(ErrorMessage + e.Message);
                     return null;
                 }
             }
-            else
-            {
-                Console.WriteLine("File does not exist: " + uploadFile);
-                return null;
-            }
+
+            return null;
         }
 
         /// <summary>
@@ -199,7 +172,7 @@
             }
             catch (Exception e)
             {
-                Console.WriteLine("An error occurred: " + e.Message);
+                Console.WriteLine(ErrorMessage + e.Message);
             }
 
             return NewDirectory;
@@ -272,22 +245,41 @@
         ///          if is not found return null.</returns>
         public static File GetFileById(DriveService service, string id)
         {
-            if (string.IsNullOrEmpty(id))
-            {
-                throw new ArgumentNullException("file id");
-            }
-
-            if(service.HttpClientInitializer == null)
-            {
-                throw new AuthenticationException("Authentication error! Please use the Authentication class to initialize the Google Drive service!");
-            }
-
+            Validator.IsStringNullOrEmpty(id, "File id");
+            Validator.ValidHttpClientInitializer(service);
             return service.Files.Get(id).Execute();
         }
 
-        public static void DeleteFileById(DriveService service, string id)
+        public static string DeleteFileById(DriveService service, string id)
         {
+            Validator.IsStringNullOrEmpty(id, "File id");
+            Validator.ValidHttpClientInitializer(service);
 
+            string request = service.Files.Delete(id).Execute();
+            return request;
+        }
+
+        public static string GetDownloadUrlByFileId(DriveService service, string id)
+        {
+            Validator.IsStringNullOrEmpty(id);
+            Validator.ValidHttpClientInitializer(service);
+
+            string link = service.Files.Get(id).Execute().WebContentLink;
+            return link;
+        }
+
+        private static string GetMimeType(string fileName)
+        {
+            string mimeType = "application/unknown";
+            string extension = System.IO.Path.GetExtension(fileName).ToLower();
+            Microsoft.Win32.RegistryKey regKey = Microsoft.Win32.Registry.ClassesRoot.OpenSubKey(extension);
+
+            if (regKey != null && regKey.GetValue("Content Type") != null)
+            {
+                mimeType = regKey.GetValue("Content Type").ToString();
+            }
+
+            return mimeType;
         }
     }
 }

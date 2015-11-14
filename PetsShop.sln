@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GoogleDrive", "GoogleDrive"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleDrive.Api", "GoogleDrive\GoogleDrive.Api\GoogleDrive.Api.csproj", "{6EF6993E-11A9-4BC3-B6E1-1FCCFEC26C97}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleDrive.Validation", "GoogleDrive.Validation\GoogleDrive.Validation.csproj", "{6210CB44-7341-486D-96F2-03DA57791B12}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{6EF6993E-11A9-4BC3-B6E1-1FCCFEC26C97}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6EF6993E-11A9-4BC3-B6E1-1FCCFEC26C97}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6EF6993E-11A9-4BC3-B6E1-1FCCFEC26C97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6210CB44-7341-486D-96F2-03DA57791B12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6210CB44-7341-486D-96F2-03DA57791B12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6210CB44-7341-486D-96F2-03DA57791B12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6210CB44-7341-486D-96F2-03DA57791B12}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,5 +54,6 @@ Global
 		{89A9B1A3-1266-4731-8E5D-9245C9B118DB} = {78EC7B81-FCB2-4B94-A633-2A6C0FA665B6}
 		{CBAC1DC3-FBFF-493F-A2BD-903B263B693B} = {78EC7B81-FCB2-4B94-A633-2A6C0FA665B6}
 		{6EF6993E-11A9-4BC3-B6E1-1FCCFEC26C97} = {696F3656-EE0C-4F7F-A1C6-D1334863CD35}
+		{6210CB44-7341-486D-96F2-03DA57791B12} = {696F3656-EE0C-4F7F-A1C6-D1334863CD35}
 	EndGlobalSection
 EndGlobal

@@ -1,30 +1,29 @@
-﻿
 ﻿/*
- * Copyright 2014 Daimto.com
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
- 
+* Copyright 2014 Daimto.com
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
 namespace GoogleDrive.Api
 {
     using System;
-    using System.IO;
     using System.Security.Cryptography.X509Certificates;
     using System.Threading;
     using Google.Apis.Auth.OAuth2;
     using Google.Apis.Drive.v2;
     using Google.Apis.Services;
     using Google.Apis.Util.Store;
+    using Validation;
 
     public class Authentication
     {
@@ -47,7 +46,7 @@ namespace GoogleDrive.Api
                                              DriveService.Scope.DriveMetadataReadonly,   // view metadata for files
                                              DriveService.Scope.DriveReadonly,   // view files and documents on your drive
                                              DriveService.Scope.DriveScripts };  // modify your app scripts
-            
+
             try
             {
                 // here is where we Request the user to give us access, or use the Refresh Token that was previously stored in %AppData%
@@ -82,9 +81,8 @@ namespace GoogleDrive.Api
         public static DriveService AuthenticateServiceAccount(string serviceAccountEmail, string keyFilePath)
         {
             // check the file exists
-            if (!File.Exists(keyFilePath))
+            if (!Validator.IsFileExisting(keyFilePath, "Key file"))
             {
-                Console.WriteLine("An Error occurred - Key file does not exist");
                 return null;
             }
 
@@ -111,7 +109,7 @@ namespace GoogleDrive.Api
                 DriveService service = new DriveService(new BaseClientService.Initializer()
                 {
                     HttpClientInitializer = credential,
-                    ApplicationName = "Daimto Drive API Sample",
+                    ApplicationName = "Pet Store Api",
                 });
 
                 return service;
