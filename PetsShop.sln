@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetStore.Models", "Data\Pet
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetStore.Data", "Data\PetStore.Data\PetStore.Data.csproj", "{CBAC1DC3-FBFF-493F-A2BD-903B263B693B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GoogleDrive", "GoogleDrive", "{696F3656-EE0C-4F7F-A1C6-D1334863CD35}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleDrive.Api", "GoogleDrive\GoogleDrive.Api\GoogleDrive.Api.csproj", "{6EF6993E-11A9-4BC3-B6E1-1FCCFEC26C97}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +35,10 @@ Global
 		{CBAC1DC3-FBFF-493F-A2BD-903B263B693B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CBAC1DC3-FBFF-493F-A2BD-903B263B693B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CBAC1DC3-FBFF-493F-A2BD-903B263B693B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EF6993E-11A9-4BC3-B6E1-1FCCFEC26C97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EF6993E-11A9-4BC3-B6E1-1FCCFEC26C97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EF6993E-11A9-4BC3-B6E1-1FCCFEC26C97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EF6993E-11A9-4BC3-B6E1-1FCCFEC26C97}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,5 +47,6 @@ Global
 		{6A4F650F-4A0F-4FD8-BCDE-3420E6AA0316} = {770FEFA3-DF90-4025-B5CB-61E8813110F6}
 		{89A9B1A3-1266-4731-8E5D-9245C9B118DB} = {78EC7B81-FCB2-4B94-A633-2A6C0FA665B6}
 		{CBAC1DC3-FBFF-493F-A2BD-903B263B693B} = {78EC7B81-FCB2-4B94-A633-2A6C0FA665B6}
+		{6EF6993E-11A9-4BC3-B6E1-1FCCFEC26C97} = {696F3656-EE0C-4F7F-A1C6-D1334863CD35}
 	EndGlobalSection
 EndGlobal

@@ -48,8 +48,7 @@ namespace GoogleDrive.Api
                                              DriveService.Scope.DriveMetadataReadonly,   // view metadata for files
                                              DriveService.Scope.DriveReadonly,   // view files and documents on your drive
                                              DriveService.Scope.DriveScripts };  // modify your app scripts
-
-
+            
             try
             {
                 // here is where we Request the user to give us access, or use the Refresh Token that was previously stored in %AppData%
@@ -64,16 +63,14 @@ namespace GoogleDrive.Api
                     HttpClientInitializer = credential,
                     ApplicationName = "Daimto Drive API Sample",
                 });
+
                 return service;
             }
             catch (Exception ex)
             {
-
                 Console.WriteLine(ex.InnerException);
                 return null;
-
             }
-
         }
 
         /// <summary>
@@ -85,7 +82,6 @@ namespace GoogleDrive.Api
         /// <returns></returns>
         public static DriveService AuthenticateServiceAccount(string serviceAccountEmail, string keyFilePath)
         {
-
             // check the file exists
             if (!File.Exists(keyFilePath))
             {
@@ -109,7 +105,8 @@ namespace GoogleDrive.Api
                     new ServiceAccountCredential.Initializer(serviceAccountEmail)
                     {
                         Scopes = scopes
-                    }.FromCertificate(certificate));
+                    }
+                    .FromCertificate(certificate));
 
                 // Create the service.
                 DriveService service = new DriveService(new BaseClientService.Initializer()
@@ -117,13 +114,13 @@ namespace GoogleDrive.Api
                     HttpClientInitializer = credential,
                     ApplicationName = "Daimto Drive API Sample",
                 });
+
                 return service;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.InnerException);
                 return null;
-
             }
         }
     }
