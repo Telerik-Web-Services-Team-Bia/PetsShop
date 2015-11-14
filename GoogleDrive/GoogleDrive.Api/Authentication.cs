@@ -39,7 +39,6 @@ namespace GoogleDrive.Api
         /// <returns></returns>
         public static DriveService AuthenticateOauth(string clientId, string clientSecret, string userName)
         {
-
             //Google Drive scopes Documentation:   https://developers.google.com/drive/web/scopes
             string[] scopes = new string[] { DriveService.Scope.Drive,  // view and manage your files and documents
                                              DriveService.Scope.DriveAppdata,  // view and manage its own configuration data
@@ -56,12 +55,12 @@ namespace GoogleDrive.Api
                                                                                              , scopes
                                                                                              , userName
                                                                                              , CancellationToken.None
-                                                                                             , new FileDataStore("Daimto.Drive.Auth.Store")).Result;
+                                                                                             , new FileDataStore("Pet.Store")).Result;
 
                 DriveService service = new DriveService(new BaseClientService.Initializer()
                 {
                     HttpClientInitializer = credential,
-                    ApplicationName = "Daimto Drive API Sample",
+                    ApplicationName = "Pet Store Api",
                 });
 
                 return service;

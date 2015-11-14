@@ -4,10 +4,10 @@
     using System.Collections.Generic;
     using Google.Apis.Drive.v2;
     using Google.Apis.Drive.v2.Data;
+    using System.Security.Authentication;
 
     public class DaimtoGoogleDriveHelper
     {
-
         /// <summary>
         /// Download a file
         /// Documentation: https://developers.google.com/drive/v2/reference/files/get
@@ -26,6 +26,36 @@
                     byte[] arrBytes = x.Result;
                     System.IO.File.WriteAllBytes(saveTo, arrBytes);
                     return true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("An error occurred: " + e.Message);
+                    return false;
+                }
+            }
+            else
+            {
+                // The file doesn't have any content stored on Drive.
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Download a file
+        /// Documentation: https://developers.google.com/drive/v2/reference/files/get
+        /// </summary>
+        /// <param name="service">a Valid authenticated DriveService</param>
+        /// <param name="id">Id of the file to download</param>
+        /// <param name="saveTo">location of where to save the file including the file name to save it as.</param>
+        /// <returns></returns>
+        public static bool DownloadFileById(DriveService service, string id, string saveTo)
+        {
+            if (!string.IsNullOrEmpty(id) && !string.IsNullOrEmpty(saveTo))
+            {
+                try
+                {
+                    File fileResource = service.Files.Get(id).Execute();
+                    return DownloadFile(service, fileResource, saveTo);
                 }
                 catch (Exception e)
                 {
@@ -177,8 +207,7 @@
 
 
         /// <summary>
-        /// List all of the files and directories for the current user.  
-        /// 
+        /// List all of the files and directories for the current user. 
         /// Documentation: https://developers.google.com/drive/v2/reference/files/list
         /// Documentation Search: https://developers.google.com/drive/web/search-parameters
         /// </summary>
@@ -187,7 +216,7 @@
         /// <returns></returns>
         public static IList<File> GetFiles(DriveService service, string search)
         {
-            IList<File> Files = new List<File>();
+            IList<File> files = new List<File>();
 
             try
             {
@@ -207,7 +236,7 @@
                     // Adding each item  to the list.
                     foreach (File item in filesFeed.Items)
                     {
-                        Files.Add(item);
+                        files.Add(item);
                     }
 
                     // We will know we are on the last page when the next page token is
@@ -231,7 +260,34 @@
                 Console.WriteLine(ex.Message);
             }
 
-            return Files;
+            return files;
+        }
+
+        /// <summary>
+        /// Search for file by given ID. 
+        /// </summary>
+        /// <param name="service"></param>
+        /// <param name="id"></param>
+        /// <returns>If the file is found return it
+        ///          if is not found return null.</returns>
+        public static File GetFileById(DriveService service, string id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                throw new ArgumentNullException("file id");
+            }
+
+            if(service.HttpClientInitializer == null)
+            {
+                throw new AuthenticationException("Authentication error! Please use the Authentication class to initialize the Google Drive service!");
+            }
+
+            return service.Files.Get(id).Execute();
+        }
+
+        public static void DeleteFileById(DriveService service, string id)
+        {
+
         }
     }
 }
