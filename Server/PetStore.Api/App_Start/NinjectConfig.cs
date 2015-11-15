@@ -13,6 +13,8 @@ namespace PetStore.Api.App_Start
     using Data.Repositories;
     using System.Data.Entity;
     using Data;
+    using Services.Data.Contracts;
+    using Services.Data;
 
     public static class NinjectConfig 
     {
@@ -66,6 +68,8 @@ namespace PetStore.Api.App_Start
         {
             kernel.Bind(typeof(IRepository<>)).To(typeof(EfGenericRepository<>));
             kernel.Bind<DbContext>().To<PetStoreDbContext>().InRequestScope();
+            kernel.Bind<ICategoriesService>().To<CategoriesService>().InRequestScope();
+            kernel.Bind<IPetsService>().To<PetsService>().InRequestScope();
         }        
     }
 }

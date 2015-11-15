@@ -248,6 +248,10 @@
       <Project>{89a9b1a3-1266-4731-8e5d-9245c9b118db}</Project>
       <Name>PetStore.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Services\PetStore.Services.Data\PetStore.Services.Data.csproj">
+      <Project>{f730b0a1-66ed-4ae4-b59c-4fd7e6928145}</Project>
+      <Name>PetStore.Services.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

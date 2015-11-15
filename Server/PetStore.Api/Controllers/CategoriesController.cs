@@ -1,19 +1,17 @@
 ﻿namespace PetStore.Api.Controllers
 {
-    using System.Linq;
     using System.Web.Http;
     using System.Web.Http.Cors;
     using AutoMapper.QueryableExtensions;
-    using Data.Repositories;
     using Models;
-    using PetStore.Models;
+    using Services.Data.Contracts;
 
     [EnableCors("*", "*", "*")]
     public class CategoriesController : ApiController
     {
-        private IRepository<Category> categories;
+        private ICategoriesService categories;
 
-        public CategoriesController(IRepository<Category> categories)
+        public CategoriesController(ICategoriesService categories)
         {
             this.categories = categories;
         }
@@ -26,10 +24,10 @@
             return this.Ok(result);
         }
 
-        // TODO: Check if we need this!
+        [EnableCors("*", "*", "*")]
         public IHttpActionResult GetCategory(string name)
         {
-            var result = this.categories.All().Where(c => c.Name == name).ProjectTo<CategoryResponseModel>();
+            var result = this.categories.ByName(name).ProjectTo<CategoryResponseModel>();
 
             return this.Ok(result);
         }
@@ -42,37 +40,9 @@
                 return this.BadRequest(this.ModelState);
             }
 
-            var currentCategory = new Category()
-            {
-                Name = category.Name
-            };
+            var result = this.categories.Add(category.Name);
 
-            this.categories.Add(currentCategory);
-            this.categories.SaveChanges();
-
-            return this.Created(this.Url.ToString(), currentCategory.Id);
-        }
-
-        [Authorize]
-        public IHttpActionResult Delete(int id)
-        {
-            var category = this.categories.All().Where(c => c.Id == id).FirstOrDefault();
-
-            if (category == null)
-            {
-                return this.NotFound();
-            }
-
-            // TODO: Add user role - only admin can delete category 
-            //if (this.User.IsInRole("Admin")) // this may not work now
-            //{
-            //    this.categories.Delete(category);
-            //    this.categories.SaveChanges();
-
-            //    return this.Ok(category);
-            //}
-
-            return this.Unauthorized();
+            return this.Created(this.Url.ToString(), result);
         }
     }
 }
