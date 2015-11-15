@@ -70,6 +70,7 @@ namespace PetStore.Api.App_Start
             kernel.Bind<DbContext>().To<PetStoreDbContext>().InRequestScope();
             kernel.Bind<ICategoriesService>().To<CategoriesService>().InRequestScope();
             kernel.Bind<IPetsService>().To<PetsService>().InRequestScope();
+            kernel.Bind<IRatingsService>().To<RatingsService>().InRequestScope();
         }        
     }
 }

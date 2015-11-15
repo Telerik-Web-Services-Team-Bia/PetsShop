@@ -43,8 +43,10 @@
     <Compile Include="CategoriesService.cs" />
     <Compile Include="Contracts\ICategoriesService.cs" />
     <Compile Include="Contracts\IPetsService.cs" />
+    <Compile Include="Contracts\IRatingsService.cs" />
     <Compile Include="PetsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RatingsService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Data\PetStore.Data\PetStore.Data.csproj">
