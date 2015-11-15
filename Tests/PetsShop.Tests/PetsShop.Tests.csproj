@@ -8,7 +8,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PetsShop.Tests</RootNamespace>
     <AssemblyName>PetsShop.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -16,6 +16,7 @@
     <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
     <IsCodedUITest>False</IsCodedUITest>
     <TestProjectType>UnitTest</TestProjectType>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -50,8 +51,24 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="Mocks\MocksFactory.cs" />
+    <Compile Include="Mocks\RepositoryMock.cs" />
+    <Compile Include="CategoriesServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\PetStore.Data\PetStore.Data.csproj">
+      <Project>{cbac1dc3-fbff-493f-a2bd-903b263b693b}</Project>
+      <Name>PetStore.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\PetStore.Models\PetStore.Models.csproj">
+      <Project>{89a9b1a3-1266-4731-8e5d-9245c9b118db}</Project>
+      <Name>PetStore.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\PetStore.Services.Data\PetStore.Services.Data.csproj">
+      <Project>{f730b0a1-66ed-4ae4-b59c-4fd7e6928145}</Project>
+      <Name>PetStore.Services.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
