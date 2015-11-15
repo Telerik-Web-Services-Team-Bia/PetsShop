@@ -1,6 +1,5 @@
 ﻿namespace PetStore.Tests
 {
-    using System;
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -70,6 +69,22 @@
             Assert.AreEqual(0, result.Count);
         }
 
-        // TODO ByName -> what if string is null, empty or contains white spaces only
+        [TestMethod]
+        public void ByNameShouldReturnCorrectResultWhenNameIsEmpty()
+        {
+            string categoryName = string.Empty;
+            var result = this.categoriesService.ByName(categoryName).ToList();
+
+            Assert.AreEqual(0, result.Count);
+        }
+
+        [TestMethod]
+        public void ByNameShouldReturnCorrectResultWhenNameIsNull()
+        {
+            string categoryName = null;
+            var result = this.categoriesService.ByName(categoryName).ToList();
+
+            Assert.AreEqual(0, result.Count);
+        }
     }
 }
