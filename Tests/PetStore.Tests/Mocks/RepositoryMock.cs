@@ -77,12 +77,12 @@
 
         public void Delete(T entity)
         {
-            if (!this.data.Contains(entity))
+            if (this.data.Count == 0)
             {
-                throw new InvalidOperationException("Entity not found.");
+                throw new InvalidOperationException("No data.");
             }
 
-            this.data.Remove(entity);
+            this.data.RemoveAt(this.data.Count - 1);
         }
 
         public int SaveChanges()
