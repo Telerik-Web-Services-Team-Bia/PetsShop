@@ -1,4 +1,4 @@
-﻿namespace PetsShop.Tests
+﻿namespace PetStore.Tests
 {
     using System;
     using Microsoft.VisualStudio.TestTools.UnitTesting;

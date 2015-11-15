@@ -1,4 +1,4 @@
-﻿namespace PetsShop.Tests.Mocks
+﻿namespace PetStore.Tests.Mocks
 {
     using System;
     using System.Collections.Generic;
