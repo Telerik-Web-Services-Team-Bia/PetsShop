@@ -4,6 +4,8 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
+    using Common;
+
     public class Category
     {
         private ICollection<Species> species;
@@ -16,7 +18,7 @@
         public int Id { get; set; }
 
         [Index(IsUnique = true)]
-        [MaxLength(20)]
+        [MaxLength(ModelsConstants.CategoryNameMaxLength)]
         [Required]
         public string Name { get; set; }
 

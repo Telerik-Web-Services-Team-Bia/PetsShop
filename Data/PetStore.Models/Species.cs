@@ -4,6 +4,8 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
+    using Common;
+
     public class Species
     {
         private ICollection<Pet> pets;
@@ -17,7 +19,7 @@
 
         [Required]
         [Index(IsUnique = true)]
-        [MaxLength(20)]
+        [MaxLength(ModelsConstants.SpeciesNameMaxLength)]
         public string Name { get; set; }
 
         [Required]

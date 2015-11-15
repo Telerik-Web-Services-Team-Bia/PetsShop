@@ -4,6 +4,8 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
+    using Common;
+
     public class Color
     {
         private ICollection<Pet> pets;
@@ -16,7 +18,7 @@
         public int Id { get; set; }
 
         [Index(IsUnique = true)]
-        [MaxLength(10)]
+        [MaxLength(ModelsConstants.ColorNameMaxLength)]
         [Required]
         public string Name { get; set; }
 

@@ -7,12 +7,14 @@
     using System.Security.Claims;
     using System.Threading.Tasks;
 
+    using Common;
+
     public class User : IdentityUser
     {
-        [MaxLength(20)]
+        [MaxLength(ModelsConstants.UserNamesMaxLength)]
         public string FirstName { get; set; }
 
-        [MaxLength(20)]
+        [MaxLength(ModelsConstants.UserNamesMaxLength)]
         public string LastName { get; set; }
 
         [Required]

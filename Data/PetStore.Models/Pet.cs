@@ -4,6 +4,8 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
+    using Common;
+
     public class Pet
     {
         private ICollection<Rating> ratings;
@@ -15,7 +17,7 @@
 
         public int Id { get; set; }
 
-        [MaxLength(20)]
+        [MaxLength(ModelsConstants.PetNameMaxLength)]
         public string Name { get; set; }
 
         public int ColorId { get; set; }
@@ -37,6 +39,7 @@
         public string Description { get; set; }
 
         [Required]
+        [Range(ModelsConstants.PetMinPrice, ModelsConstants.PetMaxPrice)]
         public decimal Price { get; set; }
 
         public virtual PetImage Image { get; set; }
