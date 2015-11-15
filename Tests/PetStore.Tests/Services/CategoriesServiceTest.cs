@@ -1,12 +1,12 @@
-﻿namespace PetStore.Tests
+﻿namespace PetStore.Tests.Services
 {
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     using Mocks;
     using Models;
-    using Services.Data;
-    using Services.Data.Contracts;
+    using PetStore.Services.Data;
+    using PetStore.Services.Data.Contracts;
 
     [TestClass]
     public class CategoriesServiceTest

@@ -6,8 +6,8 @@
     <ProjectGuid>{2096B0DA-0580-404E-B631-A083A742C800}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PetsStore.Tests</RootNamespace>
-    <AssemblyName>PetsStore.Tests</AssemblyName>
+    <RootNamespace>PetStore.Tests</RootNamespace>
+    <AssemblyName>PetStore.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -53,8 +53,9 @@
   <ItemGroup>
     <Compile Include="Mocks\MocksFactory.cs" />
     <Compile Include="Mocks\RepositoryMock.cs" />
-    <Compile Include="CategoriesServiceTest.cs" />
+    <Compile Include="Services\CategoriesServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\PetsServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Data\PetStore.Data\PetStore.Data.csproj">
