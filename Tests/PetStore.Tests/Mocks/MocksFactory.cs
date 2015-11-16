@@ -1,11 +1,27 @@
 ﻿namespace PetStore.Tests.Mocks
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
 
     using PetStore.Models;
+    using PetStore.Services.Data.Contracts;
+    using Moq;
 
     public static class MocksFactory
     {
+        private static IQueryable<Category> categories = new List<Category>
+        {
+            new Category
+            {
+                Name = "Test category 0"
+            },
+            new Category
+            {
+                Name = "Test category 1"
+            }
+        }.AsQueryable();
+
         public static RepositoryMock<Category> GetCategoriesRepository(int categoriesCount = 5)
         {
             var repo = new RepositoryMock<Category>();
@@ -75,6 +91,18 @@
             }
 
             return repo;
+        }
+
+        public static ICategoriesService GetCategoriesService()
+        {
+            var categoriesService = new Mock<ICategoriesService>();
+
+            categoriesService.Setup(x => x.All()).Returns(categories);
+            categoriesService.Setup(x => x.ByName(It.Is<string>(n => n == "Valid"))).Returns(categories);
+            categoriesService.Setup(x => x.ByName(It.Is<string>(n => n == "Invalid"))).Returns(new List<Category>().AsQueryable());
+            categoriesService.Setup(x => x.Add(It.IsAny<string>())).Returns(1);
+
+            return categoriesService.Object;
         }
     }
 }
