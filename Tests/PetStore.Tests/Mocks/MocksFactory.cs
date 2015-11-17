@@ -24,6 +24,27 @@
             }
         }.AsQueryable();
 
+        private static IQueryable<Pet> pets = new List<Pet>
+        {
+            new Pet
+            {
+                Id = 1,
+                Name = "Test pet",
+                Price = 10,
+                ColorId = 1,
+                Color = new Color { Id = 1, Name = "test" },
+                SpeciesId = 1,
+                Species = new Species { Id = 1, Name = "test", CategoryId = 1, Category = new Category {  Id =1, Name = "test"} },
+                UserId = "test",
+                User = new User {  Age = 1, FirstName = "John", LastName = "Doe"},
+                BirthDate = new DateTime(2015, 11, 17),
+                IsVaccinated = true,
+                Description = "Test",
+                Image = new PetImage { Image = new byte[1], PetId = 1 },
+                Ratings = new [] { new Rating {  Value = 1} }
+            }
+        }.AsQueryable();
+
         public static RepositoryMock<Category> GetCategoriesRepository(int categoriesCount = 5)
         {
             var repo = new RepositoryMock<Category>();
@@ -107,6 +128,30 @@
             return categoriesService.Object;
         }
 
+        public static IPetsService GetPetsService()
+        {
+            var petsService = new Mock<IPetsService>();
+
+            petsService.Setup(x => x.All(It.IsAny<string>(), It.IsAny<string>())).Returns(pets);
+            petsService.Setup(x => x.ById(It.Is<int>(i => i == 1))).Returns(pets);
+            petsService.Setup(x => x.ById(It.Is<int>(i => i == -1))).Returns(new List<Pet>().AsQueryable());
+            petsService.Setup(x => x.Add(
+                It.IsAny<string>(),
+                It.IsAny<DateTime>(),
+                It.IsAny<string>(),
+                It.IsAny<string>(),
+                It.IsAny<string>(),
+                It.IsAny<bool>(),
+                It.IsAny<decimal>(),
+                It.IsAny<string>(),
+                It.IsAny<string>(),
+                It.IsAny<byte[]>(),
+                It.IsAny<Pet>()))
+                .Returns(1);
+
+            return petsService.Object;
+        }
+
         public static CategoryDataTransferModel GetInvalidCategoryModel()
         {
             return new CategoryDataTransferModel
@@ -120,6 +165,28 @@
             return new CategoryDataTransferModel
             {
                 Name = new string('*', ModelsConstants.CategoryNameMaxLength - 1)
+            };
+        }
+
+        public static PetRequestModel GetInvalidPetRequestModel()
+        {
+            return new PetRequestModel
+            {
+                Name = "Test pet",
+                Price = ModelsConstants.PetMinPrice - 1
+            };
+        }
+
+        public static PetRequestModel GetValidPetRequestModel()
+        {
+            return new PetRequestModel
+            {
+                Name = "Test pet",
+                Color = "purple",
+                Species = "test",
+                Category = "test",
+                Description = "test",
+                Price = 10
             };
         }
     }

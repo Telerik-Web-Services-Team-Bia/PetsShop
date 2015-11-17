@@ -21,13 +21,18 @@
         
         public IHttpActionResult GetAllPets(string category = null, string sortBy = "ratingDesc")
         {
-            var result = this.pets.All(category, sortBy).ProjectTo<PetResponseModel>();
+            var result = this.pets.All(category, sortBy).ProjectTo<PetResponseModel>().ToList();
             return this.Ok(result);
         }
         
         public IHttpActionResult GetPet(int id)
         {
-            var result = this.pets.ById(id).ProjectTo<PetResponseModel>().First();
+            var result = this.pets.ById(id).ProjectTo<PetResponseModel>().FirstOrDefault();
+
+            if (result == null)
+            {
+                return this.NotFound();
+            }
 
             return this.Ok(result);
         }
@@ -35,6 +40,11 @@
         [Authorize]
         public IHttpActionResult Post(PetRequestModel pet)
         {
+            if (pet == null)
+            {
+                return this.BadRequest();
+            }
+
             if (!this.ModelState.IsValid)
             {
                 return this.BadRequest(this.ModelState);

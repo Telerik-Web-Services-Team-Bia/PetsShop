@@ -103,6 +103,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Controllers\CategoriesControllerTests.cs" />
+    <Compile Include="Controllers\PetsControllerTests.cs" />
     <Compile Include="Mocks\MocksFactory.cs" />
     <Compile Include="Mocks\RepositoryMock.cs" />
     <Compile Include="Services\CategoriesServiceTest.cs" />
