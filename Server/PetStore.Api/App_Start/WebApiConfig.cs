@@ -2,6 +2,7 @@
 {
     using System.Web.Http;
     using Microsoft.Owin.Security.OAuth;
+    using System.Web.Http.Cors;
 
     public static class WebApiConfig
     {
@@ -10,7 +11,8 @@
             config.SuppressDefaultHostAuthentication();
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
 
-            config.EnableCors();
+            //var corsAttr = new EnableCorsAttribute("*", "*", "*");
+            //config.EnableCors(corsAttr);
 
             // Web API routes
             config.MapHttpAttributeRoutes();

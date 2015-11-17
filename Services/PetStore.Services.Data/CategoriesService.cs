@@ -1,5 +1,6 @@
 ﻿namespace PetStore.Services.Data
 {
+    using System;
     using System.Linq;
     using Contracts;
     using Models;
@@ -35,6 +36,20 @@
         public IQueryable<Category> ByName(string name)
         {
             return this.categories.All().Where(c => c.Name == name);
+        }
+
+        public void Delete(Category category)
+        {
+            this.categories.Delete(category);
+            this.categories.SaveChanges();
+        }
+
+        public int Update(Category category)
+        {
+            this.categories.Update(category);
+            this.categories.SaveChanges();
+
+            return category.Id;
         }
     }
 }

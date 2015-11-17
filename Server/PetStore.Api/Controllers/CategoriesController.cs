@@ -16,16 +16,14 @@
         {
             this.categories = categories;
         }
-
-        [EnableCors("*", "*", "*")]
+        
         public IHttpActionResult GetAllCategories()
         {
             var result = this.categories.All().ProjectTo<CategoryDataTransferModel>();
 
             return this.Ok(result);
         }
-
-        [EnableCors("*", "*", "*")]
+        
         public IHttpActionResult GetCategory(string name)
         {
             if (string.IsNullOrWhiteSpace(name))
@@ -41,8 +39,7 @@
 
             return this.Ok(result);
         }
-
-        [EnableCors("*", "*", "*")]
+        
         public IHttpActionResult Post(CategoryDataTransferModel category)
         {
             if (category == null)
@@ -58,6 +55,43 @@
             var result = this.categories.Add(category.Name);
 
             return this.Created(this.Url.ToString(), result);
+        }
+
+        [Authorize]
+        public IHttpActionResult Delete(string name)
+        {
+            var category = this.categories.ByName(name).FirstOrDefault();
+
+            if (category == null)
+            {
+                return this.NotFound();
+            }
+
+            this.categories.Delete(category);
+
+            return this.Ok();
+        }
+
+        [Authorize]
+        public IHttpActionResult Update(string name, [FromBody] CategoryDataTransferModel category)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.BadRequest(this.ModelState);
+            }
+
+            var categoryToUpdate = this.categories.ByName(name).FirstOrDefault();
+
+            if (categoryToUpdate == null)
+            {
+                return this.NotFound();
+            }
+
+            categoryToUpdate.Name = category.Name;
+
+            this.categories.Update(categoryToUpdate);
+
+            return this.Ok(categoryToUpdate.Id);
         }
     }
 }

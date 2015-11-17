@@ -9,6 +9,10 @@
 
         int Add(string name);
 
+        int Update(Category category);
+
         IQueryable<Category> ByName(string name);
+
+        void Delete(Category category);
     }
 }

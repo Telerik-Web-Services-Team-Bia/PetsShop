@@ -17,6 +17,11 @@
             this.users = users;
         }
 
+        public IQueryable<Rating> ByPet(int id)
+        {
+            return this.ratings.All().Where(r => r.PetId == id);
+        }
+
         public int Rate(int petId, string userId, int value)
         {
             var allRatings = this.ratings.All().Where(r => r.PetId == petId && r.UserId == userId).ToList();
@@ -44,6 +49,12 @@
             this.ratings.SaveChanges();
 
             return currentRating.Value;
+        }
+
+        public void Delete(Rating rating)
+        {
+            this.ratings.Delete(rating);
+            this.ratings.SaveChanges();
         }
     }
 }

@@ -6,7 +6,7 @@ var data = (function () {
     const USERNAME_STORAGE_KEY = 'username-key',
         AUTH_KEY_STORAGE_KEY = 'auth-key-key';
 
-    var baseUrl = "https://microsoft-apiappd9f14ef7f696440a97a2766f35ce4f77.azurewebsites.net/";
+    var baseUrl = "http://localhost:8089/";
 
     function userLogin(user) {
         var primi = new Promise(function (resolve, reject) {
