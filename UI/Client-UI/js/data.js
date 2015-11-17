@@ -6,7 +6,7 @@ var data = (function () {
     const USERNAME_STORAGE_KEY = 'username-key',
         AUTH_KEY_STORAGE_KEY = 'auth-key-key';
 
-    var baseUrl = "http://localhost:8089/";
+    var baseUrl = "https://microsoft-apiappd9f14ef7f696440a97a2766f35ce4f77.azurewebsites.net/api/";
 
     function userLogin(user) {
         var primi = new Promise(function (resolve, reject) {
@@ -89,7 +89,7 @@ var data = (function () {
 
 // Example -------------------------------------------------------------------------------------
     function petsGet() {
-        return jsonRequester.get(baseUrl + 'api/Pets')
+        return jsonRequester.get(baseUrl + 'Pets')
           .then(function(res) {
             return res;
           });
@@ -103,7 +103,7 @@ var data = (function () {
           }
         };
 
-        return jsonRequester.post('api/Pets', options)
+        return jsonRequester.post('Pets', options)
           .then(function(resp) {
             return resp;
           });
@@ -111,7 +111,7 @@ var data = (function () {
 
     function petById(id) {
         id = id.substring(1);
-        return jsonRequester.get(baseUrl + 'api/Pets/' + id)
+        return jsonRequester.get(baseUrl + '	Pets/' + id)
           .then(function(res) {
             return res;
           });
