@@ -118,6 +118,10 @@
       <Project>{89a9b1a3-1266-4731-8e5d-9245c9b118db}</Project>
       <Name>PetStore.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\PetStore.Common\PetStore.Common.csproj">
+      <Project>{05a55604-4073-405d-afad-75e45201e243}</Project>
+      <Name>PetStore.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Server\PetStore.Api\PetStore.Api.csproj">
       <Project>{6a4f650f-4a0f-4fd8-bcde-3420e6aa0316}</Project>
       <Name>PetStore.Api</Name>

@@ -4,11 +4,11 @@
     using System.Web.Http.Cors;
 
     using Api.Controllers;
+    using Api.Models;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Mocks;
-    using MyTested.WebApi;
-    using Api.Models;
     using Models;
+    using MyTested.WebApi;
 
     [TestClass]
     public class CategoriesControllerTests
@@ -22,7 +22,7 @@
                 .Controller<CategoriesController>()
                 .WithResolvedDependencyFor(MocksFactory.GetCategoriesService());
 
-            AutoMapper.Mapper.CreateMap<Category, CategoryResponseModel>();
+            AutoMapper.Mapper.CreateMap<Category, CategoryDataTransferModel>();
         }
 
         [TestMethod]
@@ -50,8 +50,77 @@
                 .Calling(c => c.GetAllCategories())
                 .ShouldReturn()
                 .Ok()
-                .WithResponseModelOfType<IQueryable<CategoryResponseModel>>()
+                .WithResponseModelOfType<IQueryable<CategoryDataTransferModel>>()
                 .Passing(c => c.Count() == 2);
+        }
+
+        [TestMethod]
+        public void GetCategoryShouldReturnOkWithDataWhenNameExists()
+        {
+            this.categoriesController
+                .Calling(c => c.GetCategory("Valid"))
+                .ShouldReturn()
+                .Ok()
+                .WithResponseModelOfType<IQueryable<CategoryDataTransferModel>>()
+                .Passing(c => c.Count() != 0);
+        }
+
+        [TestMethod]
+        public void GetCategoryShouldReturnNotFoundWhenNameIsNonexistent()
+        {
+            this.categoriesController
+                .Calling(c => c.GetCategory("Invalid"))
+                .ShouldReturn()
+                .NotFound();
+        }
+
+        [TestMethod]
+        public void GetCategoryShouldReturnBadRequestWhenNameIsNull()
+        {
+            this.categoriesController
+                .Calling(c => c.GetCategory(null))
+                .ShouldReturn()
+                .BadRequest();
+        }
+
+        [TestMethod]
+        public void GetCategoryShouldReturnBadRequestWhenNameIsEmpty()
+        {
+            this.categoriesController
+                .Calling(c => c.GetCategory(string.Empty))
+                .ShouldReturn()
+                .BadRequest();
+        }
+
+        [TestMethod]
+        public void PostShouldReturnBadRequestWhenModelIsNull()
+        {
+            this.categoriesController
+                .Calling(c => c.Post(null))
+                .ShouldReturn()
+                .BadRequest();
+        }
+
+        [TestMethod]
+        public void PostShouldReturnBadRequestWithInvalidModelWhenModelIsInvalid()
+        {
+            this.categoriesController
+                .Calling(c => c.Post(MocksFactory.GetInvalidCategoryModel()))
+                .ShouldReturn()
+                .BadRequest()
+                .WithModelStateFor<CategoryDataTransferModel>()
+                .ContainingModelStateErrorFor(x => x.Name);
+        }
+
+        [TestMethod]
+        public void PostShouldReturnCreatedWithDataWhenModelIsValid()
+        {
+            this.categoriesController
+                .Calling(c => c.Post(MocksFactory.GetValidCategoryModel()))
+                .ShouldReturn()
+                .Created()
+                .WithResponseModelOfType<int>()
+                .Passing(x => x == 1);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿namespace PetStore.Api.Controllers
 {
+    using System.Linq;
     using System.Web.Http;
     using System.Web.Http.Cors;
     using AutoMapper.QueryableExtensions;
@@ -19,7 +20,7 @@
         [EnableCors("*", "*", "*")]
         public IHttpActionResult GetAllCategories()
         {
-            var result = this.categories.All().ProjectTo<CategoryResponseModel>();
+            var result = this.categories.All().ProjectTo<CategoryDataTransferModel>();
 
             return this.Ok(result);
         }
@@ -27,14 +28,28 @@
         [EnableCors("*", "*", "*")]
         public IHttpActionResult GetCategory(string name)
         {
-            var result = this.categories.ByName(name).ProjectTo<CategoryResponseModel>();
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                return this.BadRequest("Name is null, empty or consists only of white spaces.");
+            }
+
+            var result = this.categories.ByName(name).ProjectTo<CategoryDataTransferModel>();
+            if (result.Count() == 0)
+            {
+                return this.NotFound();
+            }
 
             return this.Ok(result);
         }
 
         [EnableCors("*", "*", "*")]
-        public IHttpActionResult Post(CategoryResponseModel category)
+        public IHttpActionResult Post(CategoryDataTransferModel category)
         {
+            if (category == null)
+            {
+                return this.BadRequest();
+            }
+
             if (!this.ModelState.IsValid)
             {
                 return this.BadRequest(this.ModelState);

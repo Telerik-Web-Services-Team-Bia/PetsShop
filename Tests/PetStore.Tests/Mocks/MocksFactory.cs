@@ -4,9 +4,11 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    using PetStore.Models;
-    using PetStore.Services.Data.Contracts;
+    using Api.Models;
+    using Common;
+    using Models;
     using Moq;
+    using PetStore.Services.Data.Contracts;
 
     public static class MocksFactory
     {
@@ -103,6 +105,22 @@
             categoriesService.Setup(x => x.Add(It.IsAny<string>())).Returns(1);
 
             return categoriesService.Object;
+        }
+
+        public static CategoryDataTransferModel GetInvalidCategoryModel()
+        {
+            return new CategoryDataTransferModel
+            {
+                Name = new string('*', ModelsConstants.CategoryNameMaxLength + 5)
+            };
+        }
+
+        public static CategoryDataTransferModel GetValidCategoryModel()
+        {
+            return new CategoryDataTransferModel
+            {
+                Name = new string('*', ModelsConstants.CategoryNameMaxLength - 1)
+            };
         }
     }
 }

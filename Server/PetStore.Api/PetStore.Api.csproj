@@ -222,7 +222,7 @@
     </Compile>
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\CategoryResponseModel.cs" />
+    <Compile Include="Models\CategoryDataTransferModel.cs" />
     <Compile Include="Models\PetRequestModel.cs" />
     <Compile Include="Models\PetResponseModel.cs" />
     <Compile Include="Models\RatingRequestModel.cs" />

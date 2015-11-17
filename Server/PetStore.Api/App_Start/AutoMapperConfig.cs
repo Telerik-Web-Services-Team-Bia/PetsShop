@@ -8,7 +8,7 @@
     {
         public static void RegisterMappings()
         {
-            AutoMapper.Mapper.CreateMap<Category, CategoryResponseModel>();
+            AutoMapper.Mapper.CreateMap<Category, CategoryDataTransferModel>();
 
             AutoMapper.Mapper.CreateMap<Pet, PetResponseModel>()
                 .ForMember(dest => dest.Color,
