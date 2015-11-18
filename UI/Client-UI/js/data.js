@@ -104,24 +104,38 @@ var data = (function () {
         };
 
         return jsonRequester.post(baseUrl + 'Pets', options)
-          .then(function(resp) {
-            return resp;
-          });
+            .then(function(resp) {
+              return resp;
+            });
     }
 
     function petById(id) {
         id = id.substring(1);
         return jsonRequester.get(baseUrl + '	Pets/' + id)
-          .then(function(res) {
-            return res;
-          });
+            .then(function(res) {
+              return res;
+            });
     }
 
     function categoriesGet() {
         return jsonRequester.get(baseUrl + 'Categories')
-          .then(function(res) {
-            return res;
-          });
+            .then(function(res) {
+              return res;
+            });
+    }  
+
+    function addRating(rating) {
+        var options = {
+            data: rating,
+            headers: {
+              'Authorization': 'Bearer ' + localStorage.getItem(ACCESS_TOKEN_STORAGE_KEY),           
+            }
+        };
+
+        return jsonRequester.put(baseUrl + 'Ratings', options)
+            .then(function(resp) {
+                return resp;
+            });
     }
 
 
@@ -141,6 +155,9 @@ var data = (function () {
         },
         categories: {
             get: categoriesGet 
+        },
+        ratings: {
+            add: addRating
         }
     };
 }());

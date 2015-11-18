@@ -74,7 +74,13 @@
 				<h2>Description</h2>
 				<hr>
 				<p class="text-large">{{Description}}</p>
-				<div class="rateit bigstars" data-rateit-value="{{Rating}}" data-rateit-ispreset="true" data-rateit-resetable="false"  data-rateit-starwidth="32" data-rateit-starheight="32"></div>
+				<select id="rating">
+				    <option value="1" {{#if_eq_num Rating "1"}} selected="selected" {{/if_eq_num}}>1</option>
+                    <option value="2" {{#if_eq_num Rating "2"}} selected="selected" {{/if_eq_num}}>2</option>
+                    <option value="3" {{#if_eq_num Rating "3"}} selected="selected" {{/if_eq_num}}>3</option>
+                    <option value="4" {{#if_eq_num Rating "4"}} selected="selected" {{/if_eq_num}}>4</option>
+                    <option value="5" {{#if_eq_num Rating "5"}} selected="selected" {{/if_eq_num}}>5</option>
+				</select>
 				<hr>			
 				<button class="btn btn-primary btn-xs" id="share">Share of Facebook</button>
 			</div>

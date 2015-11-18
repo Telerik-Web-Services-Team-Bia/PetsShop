@@ -79,6 +79,7 @@ var usersController = function () {
                 localStorage.removeItem(USER_NAME);
                 localStorage.removeItem(ACCESS_TOKEN_STORAGE_KEY);
                 localStorage.removeItem(USERNAME_STORAGE_KEY);
+                window.location.hash = '#/home';
             });
     }
 

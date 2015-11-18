@@ -36,18 +36,47 @@ var petsController = function () {
                     var url = $(ev.target).parents('.thumbnail').find('a').attr('href');
                     window.location.href = url;
                 })
+
+                $('.rating').barrating({
+                    theme: 'bootstrap-stars',
+                    readonly: true
+                }); 
             });        
     }
 
     function petDetails(context) {
         var pet;
-        data.pets.getById(this.params.id)
+        var id = this.params.id;
+        data.pets.getById(id)
             .then(function (res) {
                 pet = res[0];
                 return templates.get('petDetails');
             })
             .then(function (template) {
                 context.$element().html(template(pet));
+
+                $('#rating').barrating({
+                    theme: 'bootstrap-stars',
+                    onSelect:function(value) {
+
+                        if (data.users.hasUser()) {
+                            var rating = {
+                                petId: id.substring(1),
+                                value: value
+                            };
+
+                            data.ratings.add(rating)
+                                .then(function () {
+                                    toastr.success('Pet rated!');
+                                })
+                                .catch(function (resp) {
+                                    toastr.error(resp);
+                                });                                                   
+                        } else {
+                            toastr.error('Only registered users can rate');
+                        }
+                    }
+                });
             });
     }
 
