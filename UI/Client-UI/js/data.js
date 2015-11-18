@@ -69,13 +69,21 @@ var data = (function () {
         };
     }
 
-    function petsGet(category) {
+    function petsGet(category, sortBy) {
         var url = baseUrl + 'Pets';
 
         if (category !== undefined && category !== '') {
-            url += ('?Category=' + category)
+            url += ('?Category=' + category);
         };
 
+        if (sortBy !== undefined && sortBy !== '') {
+            if (category !== undefined && category !== '') {
+                url += ('&sortBy=' + sortBy);
+            } else {
+                url += ('?sortBy=' + sortBy);
+            };           
+        };
+        
         return jsonRequester.get(url)
           .then(function(res) {
             return res;

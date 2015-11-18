@@ -2,9 +2,10 @@ var petsController = function () {
 
     function all(context) {
         var category = getUrlParameter('Category');
+        var sortBy = getUrlParameter('sortBy');
         var pets;
 
-        data.pets.get(category)
+        data.pets.get(category, sortBy)
             .then(function (resPets) {
                 pets = resPets;
                 return templates.get('pets');
@@ -12,6 +13,24 @@ var petsController = function () {
             .then(function (template) {
                 context.$element().html(template(pets));
                 categoriesController.all(context);
+
+                $('#sortBy').change(function(){   
+                    var url = window.location.href;
+
+                    if($("#sortBy").val() != 'Select') {
+                        if (sortBy !== undefined && sortBy !== '') {
+                            url = url.replace(sortBy, $("#sortBy").val());
+                        } else if (category !== undefined && category !== ''){
+                            url += '&sortBy=' + encodeURIComponent($("#sortBy").val());
+                        } else {
+                            url += '?sortBy=' + encodeURIComponent($("#sortBy").val());
+                        };
+                                                
+                    }
+                      
+                    url = url.replace(/\&$/,'');
+                    window.location.href=url;                  
+                });
             });        
     }
 
