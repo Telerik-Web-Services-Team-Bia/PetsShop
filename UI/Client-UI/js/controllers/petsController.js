@@ -31,6 +31,11 @@ var petsController = function () {
                     url = url.replace(/\&$/,'');
                     window.location.href=url;                  
                 });
+
+                $('.thumbnail').on('click', function (ev) {
+                    var url = $(ev.target).parents('.thumbnail').find('a').attr('href');
+                    window.location.href = url;
+                })
             });        
     }
 
