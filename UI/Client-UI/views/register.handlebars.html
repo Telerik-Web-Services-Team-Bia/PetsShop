@@ -1,33 +1,59 @@
-<form role="form">
-    <div class="col-md-4"></div>
-    <div class="col-md-4">  <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="text" class="form-control" id="email" placeholder="Enter email">
+<div class="container" id="userLoginContainer">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="well">
+                <form class="form-horizontal">
+                    <fieldset>
+                        <legend>New user? Register here!</legend>
+                        <small class="text-danger">
+                            <small>Fields with * are required</small>
+                        </small>
+                        <br>
+                        <br>
+                        <div class="form-group">
+                            <label for="userEmail" class="col-lg-2 control-label">Email</label>
+                            <div class="col-lg-10">
+                                <input type="text" id="userEmail" class="userLoginSet form-control"  placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="pass" class="col-lg-2 control-label">Password*</label>
+                            <div class="col-lg-10">
+                                <input type="password" id="pass" class="userLoginSet  form-control" placeholder="Password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword" class="col-lg-2 control-label">Confirm password*</label>
+                            <div class="col-lg-10">
+                                <input type="password" id="confirmPassword" class="userLoginSet  form-control"  placeholder="Confirm password">
+                                </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="first-name" class="col-lg-2 control-label">First name</label>
+                            <div class="col-lg-10">
+                                <input type="text" id="first-name" class="userLoginSet form-control"  placeholder="First name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="last-name" class="col-lg-2 control-label">Last name</label>
+                            <div class="col-lg-10">
+                                <input type="text" id="last-name" class="userLoginSet form-control"  placeholder="Last name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="age" class="col-lg-2 control-label">Age*</label>
+                            <div class="col-lg-10">
+                                <input type="text" id="age" class="userLoginSet form-control"  placeholder="Age">
+                            </div>
+                        </div>
+                        <button id="register-form-btn" class="btn btn-primary pull-right">Register</button>
+                        <br>
+                        <br>
+                        <div id="userRegisterMessages"></div>
+                        <div id="userMessages"></div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
     </div>
-        <div class="form-group">
-            <label for="pass">Password:</label>
-            <input type="password" class="form-control" id="pass" placeholder="Enter password">
-        </div>
-        <div class="form-group">
-            <label for="confirmPassword">Confirm password:</label>
-            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm password">
-        </div>
-        <div class="form-group">
-            <label for="first-name">First Name:</label>
-            <input type="text" class="form-control" id="first-name" placeholder="First Name">
-        </div>
-        <div class="form-group">
-            <label for="last-name">Last Name:</label>
-            <input type="text" class="form-control" id="last-name" placeholder="Last Name:">
-        </div>
-        <div class="form-group">
-            <label for="age">Age:</label>
-            <input type="text" class="form-control" id="age" placeholder="Enter age">
-        </div>
-
-        <button id="register-form-btn" class="btn btn-info" style="margin-left: 170px;:">Register</button> </div>
-
-    <div class="col-md-4"></div>
-</form>
-
-
+</div>

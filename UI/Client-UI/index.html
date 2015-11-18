@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Car Dealership</title>
+    <title>Pet Store</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/shop-homepage.css" rel="stylesheet">
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>
@@ -27,23 +27,33 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" style="font-family: 'Montserrat', sans-serif;" href="#/home">Pet Store</a>
-                <a class="navbar-brand" style="font-family: 'Montserrat', sans-serif;"href="#/addOffer">New Pet Offer</a>
-                <a class="navbar-brand" style="font-family: 'Montserrat', sans-serif;"href="#/pets">All Pet`s Offers</a>
-
+                <a class="navbar-brand" href="#/home">Pet Store</a>                           
             </div>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <form class="navbar-form navbar-right">
-                    <div class="form-group">
-                        <input type="text" id="tb-user" placeholder="Username" class="form-control">
+            <div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="#/addOffer">New Pet Offer</a>
+                        </li>
+                        <li>
+                            <a href="#/pets">All Pet`s Offers</a>
+                        </li>
+                    </ul>
+                    <div class="navbar-form navbar-right" id="login-form">
+                        <div class="form-group navbar-login">
+                            <input type="text" class="form-control" id="email" placeholder="Email">
+                        </div>
+                        <div class="form-group navbar-login">
+                            <input type="password" class="form-control" id="password" placeholder="Password">
+                        </div>
+                        <button class="btn btn-primary" id="btn-login">Sign In</button>
+                        <a href="#/register" class="btn btn-primary" id="btn-register">Register</a>
                     </div>
-                    <div class="form-group">
-                        <input type="password" id="tb-pass" placeholder="Password" class="form-control">
+                    <div class="navbar-form navbar-right" id="logout-form">
+                        <span class="text-muted" id="loggedUserEmail">You are logged in </span>
+                        <button class="btn btn-primary" id="btn-logout">Logout</button>
                     </div>
-                    <button id="btn-login" class="btn btn-success">Sign in</button>
-                    <button id="btn-logout" class="btn btn-warning" >Sign out</button>
-                    <a href="#/register" class="btn btn-info" id="reg-user">Register</a>
-                </form>
+                </div>               
             </div>
         </div>
     </nav>
@@ -78,9 +88,9 @@
 <script src="bower_components/toastr/toastr.js"></script>
 
 <!--App Loaders-->
-<script src="js/templates.js"></script>
 <script src="js/json-requester.js"></script>
 <script src="js/data.js"></script>
+<script src="js/templates.js"></script>
 
 <!--Helpers-->
 <script src="js/helpers/validators.js"></script>

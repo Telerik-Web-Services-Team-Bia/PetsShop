@@ -1,8 +1,8 @@
 var validator = (function () {
 
 	var PASSWORD_CONSTRAINTS = {
-		min: 3,
-		max: 22
+		min: 6,
+		max: 30
 	};
 
 	function validateManufacturer() {
@@ -69,15 +69,18 @@ var validator = (function () {
 			|| $('#image').parent().parent().hasClass('has-error'));
 	}
 
-	function validatePassword(password, passwordConfirm) {
+	function validatePasswordConformation(password, passwordConfirm) {
 		password = password + '';
 		passwordConfirm = passwordConfirm + '';
 		if (password != passwordConfirm) {
-			$('#userRegisterMessages').text('Passwords do not match!!!');
 			return false;
 		}
-		if (password.length < PASSWORD_CONSTRAINTS.min || password.length > PASSWORD_CONSTRAINTS.max) {
-			$('#userRegisterMessages').text('Password is too long or too short!!!');
+		return true;
+	}
+
+	function validatePasswordLength(password)
+	{
+		if (password.length < PASSWORD_CONSTRAINTS.min) {
 			return false;
 		}
 		return true;
@@ -104,8 +107,9 @@ var validator = (function () {
 	return {
 		validateForm: validateForm,
 		validateFormForSubmit: validateFormForSubmit,
-		validatePassword: validatePassword,
+		validatePasswordConformation: validatePasswordConformation,
 		validateUserNames: validateUserNames,
-		validateUserEmail: validateUserEmail
+		validateUserEmail: validateUserEmail,
+		validatePasswordLength: validatePasswordLength
 	}
 } ())

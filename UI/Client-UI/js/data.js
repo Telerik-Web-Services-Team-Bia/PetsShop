@@ -8,59 +8,53 @@ var data = (function () {
 
     var baseUrl = "https://microsoft-apiappd9f14ef7f696440a97a2766f35ce4f77.azurewebsites.net/api/";
 
-
-        function userLogin(user) {
-            var promis = new Promise(function (resolve, reject) {
-                var reqUser = "username=" + user.email + "&password=" + user.password + "&grant_type=password";
-                $.ajax({
-                    url: baseUrl + "Account/login",
-                    method: 'POST',
-                    contentType: 'application/x-www-form-urlencoded; charset=utf-8',
-                    data: reqUser,
-                    success: function (user) {
-                        localStorage.setItem(USERNAME_STORAGE_KEY, user.userName);
-                        localStorage.setItem(ACCESS_TOKEN_STORAGE_KEY, user.access_token);
-                        console.log('success');
-                        resolve(user);
-                    },
-                    error: function (err) {
-                        console.log('error')
-                    }
-                });
-            });
-            return promis;
-        }
-
-
-    function userRegister(user) {
-        var prom = new Promise(function (resolve, reject) {
-            var reqUser = {
-                email: user.email,
-                password: user.password,
-                confirmPassword: user.confirmPassword,
-                firstName : user.firstName,
-                lastName : user.lastName
-                //age: user.age
-            };
+    function userLogin(user) {
+        var promise = new Promise(function (resolve, reject) {
+            var reqUser = "username=" + user.email + "&password=" + user.password + "&grant_type=password";
             $.ajax({
-                url: baseUrl + "Account/Register",
+                url: baseUrl + "Account/login",
                 method: 'POST',
-                data: JSON.stringify(reqUser),
-                contentType: 'application/json',
+                contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+                data: reqUser,
                 success: function (user) {
+                    localStorage.setItem(USERNAME_STORAGE_KEY, user.userName);
+                    localStorage.setItem(ACCESS_TOKEN_STORAGE_KEY, user.access_token);
                     resolve(user);
-                    consolelog("success register");
+                },
+                error: function (err) {
+                    reject(user);
                 }
             });
         });
-        return prom;
+
+        return promise;
+    }
+
+
+    function userRegister(user) {
+        var options = {
+          data: user
+        };
+
+        return jsonRequester.post(baseUrl + "Account/Register", options)
+            .then(function(resp) {
+                return resp;
+            });
     }
 
     function userLogout() {
-        localStorage.removeItem(USERNAME_STORAGE_KEY);
-        localStorage.removeItem(ACCESS_TOKEN_STORAGE_KEY);
-        document.location.reload(true);
-        console.log("logged out");
+        var promise = new Promise(function(resolve, reject) {
+          localStorage.removeItem(USERNAME_STORAGE_KEY);
+          localStorage.removeItem(ACCESS_TOKEN_STORAGE_KEY);
+          resolve();
+        });
+
+        return promise;
+    }
+
+    function hasUser() {
+        return !!localStorage.getItem(USERNAME_STORAGE_KEY) &&
+      !!localStorage.getItem(ACCESS_TOKEN_STORAGE_KEY);
     }
 
     function returnUsername() {
@@ -108,11 +102,7 @@ var data = (function () {
             return res;
           });
     }
-// ----------------------------------------------------------------------------------------------    
-
-    function usersFind() {
-
-    }
+// ----------------------------------------------------------------------------------------------
 
 
     return {
@@ -120,9 +110,9 @@ var data = (function () {
             login: userLogin,
             register: userRegister,
             logout: userLogout,
-            find: usersFind,
             current: getCurrentUser,
-            username: returnUsername
+            username: returnUsername,
+            hasUser: hasUser
         },
         pets: {
             get: petsGet,
