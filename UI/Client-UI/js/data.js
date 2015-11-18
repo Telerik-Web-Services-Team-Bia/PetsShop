@@ -1,6 +1,3 @@
-/**
- * Created by Ивайло on 12.11.2015 г..
- */
 var data = (function () {
 
     const USERNAME_STORAGE_KEY = 'username-key',
@@ -72,8 +69,14 @@ var data = (function () {
         };
     }
 
-    function petsGet() {
-        return jsonRequester.get(baseUrl + 'Pets')
+    function petsGet(category) {
+        var url = baseUrl + 'Pets';
+
+        if (category !== undefined && category !== '') {
+            url += ('?Category=' + category)
+        };
+
+        return jsonRequester.get(url)
           .then(function(res) {
             return res;
           });
@@ -101,6 +104,13 @@ var data = (function () {
           });
     }
 
+    function categoriesGet() {
+        return jsonRequester.get(baseUrl + 'Categories')
+          .then(function(res) {
+            return res;
+          });
+    }
+
 
     return {
         users: {
@@ -115,6 +125,9 @@ var data = (function () {
             get: petsGet,
             add: petsAdd,
             getById: petById
+        },
+        categories: {
+            get: categoriesGet 
         }
     };
 }());

@@ -1,15 +1,18 @@
 var petsController = function () {
 
     function all(context) {
+        var category = getUrlParameter('Category');
         var pets;
-        data.pets.get()
+
+        data.pets.get(category)
             .then(function (resPets) {
                 pets = resPets;
                 return templates.get('pets');
             })
             .then(function (template) {
                 context.$element().html(template(pets));
-            });
+                categoriesController.all(context);
+            });        
     }
 
     function petDetails(context) {
