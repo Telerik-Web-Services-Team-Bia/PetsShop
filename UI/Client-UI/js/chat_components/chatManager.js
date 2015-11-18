@@ -1,7 +1,6 @@
-
 var chatManager = function () {
 
-    const CHANEL_NAME = 'live_chat',
+    const CHANEL_NAME = 'pet_chat',
         USER_NAME = 'user-name';
 
     var pubNub = PUBNUB.init({
@@ -14,6 +13,16 @@ var chatManager = function () {
 
         this.subscribe();
 
+        pubNub.history({
+            channel: CHANEL_NAME,
+            count: 100,
+            callback: function (messages) {
+                messages = messages[0];
+                for (i = 0; i < messages.length; i++) {
+                    publisher.displayMessage(messages[i]);
+                }
+            }
+        });
         $(document).keypress(function (key) {
 
             if (key.which == 13) {
@@ -41,7 +50,6 @@ var chatManager = function () {
     };
 
     var subscribe = function () {
-
         pubNub.subscribe({
             channel: CHANEL_NAME,
             message: function (message) {

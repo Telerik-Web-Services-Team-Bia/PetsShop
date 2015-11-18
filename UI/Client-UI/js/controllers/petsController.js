@@ -14,29 +14,29 @@ var petsController = function () {
                 context.$element().html(template(pets));
                 categoriesController.all(context);
 
-                $('#sortBy').change(function(){   
+                $('#sortBy').change(function () {
                     var url = window.location.href;
 
-                    if($("#sortBy").val() != 'Select') {
+                    if ($("#sortBy").val() != 'Select') {
                         if (sortBy !== undefined && sortBy !== '') {
                             url = url.replace(sortBy, $("#sortBy").val());
-                        } else if (category !== undefined && category !== ''){
+                        } else if (category !== undefined && category !== '') {
                             url += '&sortBy=' + encodeURIComponent($("#sortBy").val());
                         } else {
                             url += '?sortBy=' + encodeURIComponent($("#sortBy").val());
-                        };
-                                                
+                        }
+
                     }
-                      
-                    url = url.replace(/\&$/,'');
-                    window.location.href=url;                  
+
+                    url = url.replace(/\&$/, '');
+                    window.location.href = url;
                 });
 
                 $('.thumbnail').on('click', function (ev) {
                     var url = $(ev.target).parents('.thumbnail').find('a').attr('href');
                     window.location.href = url;
                 })
-            });        
+            });
     }
 
     function petDetails(context) {
@@ -70,16 +70,16 @@ var petsController = function () {
                             Description: $('#description').val(),
                             Price: $('#price').val(),
                             Image: $('#image').val()
-                        }; 
+                        };
 
                         // TODO validations
 
                         data.pets.add(pet)
-                            .then(function() {
+                            .then(function () {
                                 toastr.success('Successfully added pet!');
                                 context.redirect('#/pets');
                             })
-                            .catch(function(resp) {
+                            .catch(function (resp) {
                                 toastr.error('Error adding pet offer!')
                             });
                     });

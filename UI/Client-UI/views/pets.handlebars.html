@@ -26,10 +26,10 @@
                 {{#each this}}
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
-                            <img src="{{Image}}" alt="{{Species}} {{Category}}"> 
+                            <img src="{{this.Image}}" alt="{{this.Species}} {{this.Category}}">
                             <div class="caption">
                                 <h4 class="pull-right">${{Price}}</h4>
-                                <h4><a href="#/pets/:{{Id}}">{{Name}} - {{Species}}</a></h4> 
+                                <h4><a href="#/pets/:{{this.Id}}">{{Name}} - {{Species}}</a></h4>
                                 {{#if Description}}
                                     <p>{{Description}}</p>
                                 {{else}} 
@@ -37,7 +37,7 @@
                                 {{/if}}
                             </div>
                             <div class="ratings">
-                                <span class="rateit" data-rateit-resetable="false" data-rateit-value="{{Rating}}" data-rateit-ispreset="true" data-rateit-readonly="true">
+                                <span class="rateit" data-rateit-resetable="false" data-rateit-value="{{this.Rating}}" data-rateit-ispreset="true" data-rateit-readonly="true">
                                 </span>
                                 <span id="numberOfRatings">{{Rating}}</span> 
                             </div>
