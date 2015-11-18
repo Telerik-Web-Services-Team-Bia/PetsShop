@@ -30,13 +30,10 @@
             $('#username-nav').html(localStorage.getItem('username-key'));
             $('#greeting').html(localStorage.getItem('username-key'));
             $('#btn-logout').on('click', function () {
-                data.users.logout()
-                    .then(function () {
-                        location = '#/';
-                        document.location.reload(true);
-                        toastr.info('Good Buy');
-
-                    });
+                data.users.logout();
+                document.location.reload();
+                location = '#/';
+                toastr.info('Good Buy');
             });
         } else {
             $('#btn-logout').hide();
@@ -50,7 +47,7 @@
                     .then(function () {
                         location = '#/';
                         document.location.reload(true);
-                        //toastr.success('Hello');
+                        toastr.success('Hello');
                     });
             });
         }
