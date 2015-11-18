@@ -15,18 +15,22 @@
         [MaxLength(ModelsConstants.ColorNameMaxLength)]
         public string Color { get; set; }
 
+        [Required]
         [MaxLength(ModelsConstants.SpeciesNameMaxLength)]
         public string Species { get; set; }
 
+        [Required]
         [MaxLength(ModelsConstants.CategoryNameMaxLength)]
         public string Category { get; set; }
 
         public DateTime BirthDate { get; set; }
 
+        [Required]
         public bool IsVaccinated { get; set; }
 
         public string Description { get; set; }
 
+        [Required]
         [Range(ModelsConstants.PetMinPrice, ModelsConstants.PetMaxPrice)]
         public decimal Price { get; set; }
 
