@@ -18,6 +18,7 @@ var templates = function() {
                 resolve(template);
             });
         });
+
         return promise;
     }
     return {

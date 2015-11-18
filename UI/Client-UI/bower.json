@@ -1,9 +1,7 @@
 {
   "name": "research-simple-forum",
   "version": "0.0.0",
-  "authors": [
-    
-  ],
+  "authors": [],
   "license": "MIT",
   "ignore": [
     "**/.*",
@@ -20,6 +18,7 @@
     "moment": "~2.10.6",
     "sammy": "~0.7.6",
     "sha1": "http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha1.js",
-    "toastr": "~2.1.2"
+    "toastr": "~2.1.2",
+    "underscore": "~1.8.3"
   }
 }

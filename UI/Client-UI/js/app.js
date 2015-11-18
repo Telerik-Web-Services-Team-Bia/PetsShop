@@ -10,13 +10,21 @@
         this.get('#/register', usersController.register);
         this.get('#/pets/:id', petsController.details);       
         this.get('#/pets', petsController.all);
-        this.get('#/threads/add', threadsController.add);
+
+        this.get('#/liveChat', chatController.init);
         
 
         this.get('#/users', usersController.all);
         this.get('#/users/:id', usersController.register);
-        this.get('#/notifications', notificationsController.all);
     });
 
-    sammyApp.run('#/');   
+
+    if(localStorage.getItem('user-name') == null){
+        $('#chat').hide();
+    }
+    else{
+        $('#chat').show();
+    }
+    sammyApp.run('#/');
+
 }());

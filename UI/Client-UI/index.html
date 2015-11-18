@@ -12,8 +12,8 @@
     <link href="css/shop-homepage.css" rel="stylesheet">
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="bower_components/toastr/toastr.css"/>
-    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css' />
+    <link href="css/chat.css" rel="stylesheet" />
 </head>
 <body ng-app="PetStore" ng-cloak>
 <div id="wrap">
@@ -37,6 +37,9 @@
                         </li>
                         <li>
                             <a href="#/pets">All Pet`s Offers</a>
+                        </li>
+                        <li>
+                            <a id="chat" href="#/liveChat">Live Chat</a>
                         </li>
                     </ul>
                     <div class="navbar-form navbar-right" id="login-form">
@@ -86,11 +89,16 @@
 <script src="bower_components/sha1/index.js"></script>
 <script src="bower_components/moment/min/moment.min.js"></script>
 <script src="bower_components/toastr/toastr.js"></script>
+<script src="http://cdn.pubnub.com/pubnub-3.7.15.min.js"></script>
+<script src="bower_components/underscore/underscore-min.js"></script>
 
 <!--App Loaders-->
 <script src="js/json-requester.js"></script>
 <script src="js/data.js"></script>
 <script src="js/templates.js"></script>
+<script src="js/chat_components/chatManager.js"></script>
+<script src="js/chat_components/publisher.js"></script>
+
 
 <!--Helpers-->
 <script src="js/helpers/validators.js"></script>
@@ -99,6 +107,7 @@
 <script src="js/controllers/homeController.js"></script>
 <script src="js/controllers/usersController.js"></script>
 <script src="js/controllers/petsController.js"></script>
+<script src="js/controllers/chatController.js"></script>
 
 <!--App Start-->
 <script src="js/app.js"></script>

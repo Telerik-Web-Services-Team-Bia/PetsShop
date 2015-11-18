@@ -3,8 +3,9 @@
  */
 var data = (function () {
 
-    const USERNAME_STORAGE_KEY = 'username-key',
-        ACCESS_TOKEN_STORAGE_KEY = 'access-token';
+        const USERNAME_STORAGE_KEY = 'username-key',
+            ACCESS_TOKEN_STORAGE_KEY = 'access-token',
+            USER_NAME = 'user-name';
 
     var baseUrl = "https://microsoft-apiappd9f14ef7f696440a97a2766f35ce4f77.azurewebsites.net/api/";
 
@@ -19,6 +20,10 @@ var data = (function () {
                 success: function (user) {
                     localStorage.setItem(USERNAME_STORAGE_KEY, user.userName);
                     localStorage.setItem(ACCESS_TOKEN_STORAGE_KEY, user.access_token);
+
+                    var toIndex = user.userName.indexOf('@');
+                    var username = user.userName.substring(0,toIndex);
+                    localStorage.setItem(USER_NAME, username );
                     resolve(user);
                 },
                 error: function (err) {
@@ -68,7 +73,7 @@ var data = (function () {
             return null;
         }
         return {
-            username
+            username : username
         };
     }
 
