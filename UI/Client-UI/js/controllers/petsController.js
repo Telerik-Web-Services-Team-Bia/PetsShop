@@ -1,17 +1,42 @@
 var petsController = function () {
 
-// Example ------------------------------------------------
     function all(context) {
+        var category = getUrlParameter('Category');
+        var sortBy = getUrlParameter('sortBy');
         var pets;
-        data.pets.get()
+
+        data.pets.get(category, sortBy)
             .then(function (resPets) {
                 pets = resPets;
                 return templates.get('pets');
             })
             .then(function (template) {
                 context.$element().html(template(pets));
-                toastr.success('Hello posts');
-            });
+                categoriesController.all(context);
+
+                $('#sortBy').change(function(){   
+                    var url = window.location.href;
+
+                    if($("#sortBy").val() != 'Select') {
+                        if (sortBy !== undefined && sortBy !== '') {
+                            url = url.replace(sortBy, $("#sortBy").val());
+                        } else if (category !== undefined && category !== ''){
+                            url += '&sortBy=' + encodeURIComponent($("#sortBy").val());
+                        } else {
+                            url += '?sortBy=' + encodeURIComponent($("#sortBy").val());
+                        };
+                                                
+                    }
+                      
+                    url = url.replace(/\&$/,'');
+                    window.location.href=url;                  
+                });
+
+                $('.thumbnail').on('click', function (ev) {
+                    var url = $(ev.target).parents('.thumbnail').find('a').attr('href');
+                    window.location.href = url;
+                })
+            });        
     }
 
     function petDetails(context) {
@@ -19,26 +44,50 @@ var petsController = function () {
         data.pets.getById(this.params.id)
             .then(function (res) {
                 pet = res[0];
-                console.log(pet);
                 return templates.get('petDetails');
             })
             .then(function (template) {
                 context.$element().html(template(pet));
             });
     }
-// -----------------------------------------------------------------
+
     function add(context) {
-        templates.get('threadAdd')
-            .then(function (template) {
-                context.$element().html(template());
-                $('#btn-add-thread').on('click', function () {
-                    var title = $('#tb-thread-title').val();
-                    data.threads.add(title)
-                        .then(function () {
-                            context.redirect('#/threads');
-                        });
+
+        if (data.users.hasUser()) {
+            templates.get('addPet')
+                .then(function (template) {
+                    context.$element().html(template());
+
+                    $('#submitOffer').on('click', function () {
+
+                        var pet = {
+                            Category: $('#category').val(),
+                            Species: $('#species').val(),
+                            Name: $('#name').val(),
+                            Color: $('#color').val(),
+                            BirthDate: $('#birthdate').val(),
+                            IsVaccinated: $('input[name=vaccinated]:checked', '#petForm').val(),
+                            Description: $('#description').val(),
+                            Price: $('#price').val(),
+                            Image: $('#image').val()
+                        }; 
+
+                        // TODO validations
+
+                        data.pets.add(pet)
+                            .then(function() {
+                                toastr.success('Successfully added pet!');
+                                context.redirect('#/pets');
+                            })
+                            .catch(function(resp) {
+                                toastr.error('Error adding pet offer!')
+                            });
+                    });
                 });
-            });
+        } else {
+            context.redirect('#/pets');
+            toastr.error('You should be logged to upload an offer');
+        }
     }
 
     return {

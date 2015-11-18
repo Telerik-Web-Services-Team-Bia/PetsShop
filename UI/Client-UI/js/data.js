@@ -1,6 +1,3 @@
-/**
- * Created by Ивайло on 12.11.2015 г..
- */
 var data = (function () {
 
         const USERNAME_STORAGE_KEY = 'username-key',
@@ -77,10 +74,22 @@ var data = (function () {
         };
     }
 
+    function petsGet(category, sortBy) {
+        var url = baseUrl + 'Pets';
 
-// Example -------------------------------------------------------------------------------------
-    function petsGet() {
-        return jsonRequester.get(baseUrl + 'Pets')
+        if (category !== undefined && category !== '') {
+            url += ('?Category=' + category);
+        };
+
+        if (sortBy !== undefined && sortBy !== '') {
+            if (category !== undefined && category !== '') {
+                url += ('&sortBy=' + sortBy);
+            } else {
+                url += ('?sortBy=' + sortBy);
+            };           
+        };
+        
+        return jsonRequester.get(url)
           .then(function(res) {
             return res;
           });
@@ -90,11 +99,11 @@ var data = (function () {
         var options = {
           data: pet,
           headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem(LOCAL_STORAGE_AUTHKEY_KEY),           
+            'Authorization': 'Bearer ' + localStorage.getItem(ACCESS_TOKEN_STORAGE_KEY),           
           }
         };
 
-        return jsonRequester.post('Pets', options)
+        return jsonRequester.post(baseUrl + 'Pets', options)
           .then(function(resp) {
             return resp;
           });
@@ -107,7 +116,13 @@ var data = (function () {
             return res;
           });
     }
-// ----------------------------------------------------------------------------------------------
+
+    function categoriesGet() {
+        return jsonRequester.get(baseUrl + 'Categories')
+          .then(function(res) {
+            return res;
+          });
+    }
 
 
     return {
@@ -123,6 +138,9 @@ var data = (function () {
             get: petsGet,
             add: petsAdd,
             getById: petById
+        },
+        categories: {
+            get: categoriesGet 
         }
     };
 }());

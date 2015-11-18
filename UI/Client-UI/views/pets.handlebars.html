@@ -2,22 +2,15 @@
     <div class="row">
         <div class="col-md-3" id="category-menu-container">
             <p class="lead">Categories</p>
-            <!-- <script type="text/x-mustache-template" id="category-menu">
-                <div class="list-group">
-                    <a href="#/offers/:myOffers" class="list-group-item">My offers</a>
-                    {{#.}}
-                        <a href="#/offers/:{{.}}" class="list-group-item">{{.}}</a> 
-                    {{/.}}
-                </div>
-            </script> -->
         </div>
         <div class="col-md-9">
             <div class="form-horizontal">
                 <div class="form-group">
                     <div class="col-lg-2 pull-right">
                         <select class="form-control" id="sortBy">
-                            <option value="newest">Newest</option>
-                            <option value="oldest">Oldest</option>
+                            <option>Select</option>
+                            <option value="birthdateAsc">Birthdate ↑</option>
+                            <option value="birthdateDesc">Birthdate ↓</option>
                             <option value="priceAsc">Price ↑</option>
                             <option value="priceDesc">Price ↓</option>
                             <option value="ratingAsc">Rating ↑</option>
@@ -52,7 +45,7 @@
                     </div>
                 {{/each}}
             {{else}}
-				<h2 class="h2" style="text-align: center">No threads !</h2>
+				<h2 class="h2" style="text-align: center">No pet offers available !</h2>
 			{{/if}}
         </div>
     </div>
