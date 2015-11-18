@@ -101,7 +101,30 @@ var petsController = function () {
                             Image: $('#image').val()
                         };
 
-                        // TODO validations
+                        if (!validator.validateTextField(pet.Category)) {
+                            toastr.error('Category is required');
+                            return;
+                        }
+
+                        if (!validator.validateTextField(pet.Species)) {
+                            toastr.error('Species is required');
+                            return;
+                        }
+
+                        if (!validator.validateTextField(pet.Price)) {
+                            toastr.error('Price is required');
+                            return;
+                        }
+
+                        if (!validator.validatePrice(pet.Price)) {
+                            toastr.error('Price has to be larger or equal to zero');
+                            return;
+                        }
+
+                        if (!validator.validateDate(pet.BirthDate)) {
+                            toastr.error('Birthdate has to be before today');
+                            return;
+                        }
 
                         data.pets.add(pet)
                             .then(function () {

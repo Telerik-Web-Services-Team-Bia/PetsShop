@@ -5,68 +5,28 @@ var validator = (function () {
 		max: 30
 	};
 
-	function validateManufacturer() {
-		var manufacturer = $('#manufacturer');
+	function validateTextField(text) {
+		if (text == null || text == "" || text == undefined) {
+			return false;
+		};
 
-		manufacturer.on('input', function () {
-			if (manufacturer.val() == null || manufacturer.val() == "") {
-				manufacturer.parent().parent().addClass('has-error');
-			} else {
-				manufacturer.parent().parent().removeClass('has-error');
-			}
-		});
+		return true;
 	}
 
-	function validateModel() {
-		var model = $('#model');
+	function validatePrice(price) {
+		if (price >= 0) {
+			return true;
+		};
 
-		model.on('input', function () {
-			if (model.val() == null || model.val() == "") {
-				model.parent().parent().addClass('has-error');
-			} else {
-				model.parent().parent().removeClass('has-error');
-			}
-		});
+		return false;
 	}
 
-	function validateYear() {
-		var year = $('#year');
+	function validateDate(date) {
+		if (new Date(date) > Date.now()) {
+			return false;
+		};
 
-		year.on('input', function () {
-			if (year.val() == null || year.val() < 1886 || year.val() > new Date().getFullYear()) {
-				year.parent().parent().addClass('has-error');
-			} else {
-				year.parent().parent().removeClass('has-error');
-			}
-		});
-	}
-
-	function validatePrice() {
-		var price = $('#price');
-
-		price.on('input', function () {
-			if (price.val() == null || price.val() < 0 || price.val() == "") {
-				price.parent().parent().parent().addClass('has-error');
-			} else {
-				price.parent().parent().parent().removeClass('has-error');
-			}
-		});
-	}
-
-	function validateForm() {
-		validateManufacturer();
-		validateModel();
-		validateYear();
-		validatePrice();
-	}
-
-	function validateFormForSubmit() {
-		return !(
-			$('#manufacturer').parent().parent().hasClass('has-error')
-			|| $('#model').parent().parent().hasClass('has-error')
-			|| $('#price').parent().parent().hasClass('has-error')
-			|| $('#year').parent().parent().hasClass('has-error')
-			|| $('#image').parent().parent().hasClass('has-error'));
+		return true;
 	}
 
 	function validatePasswordConformation(password, passwordConfirm) {
@@ -89,11 +49,9 @@ var validator = (function () {
 	function validateUserNames(firstName, lastName) {
 		if (firstName == null || lastName == null
 			|| firstName.length < 1 || lastName.length < 1) {
-			$('#userRegisterMessages').text('First name and lastname are mandatory!');
 			return false;
 		}
 		if (typeof firstName != 'string' || typeof lastName != 'string') {
-			$('#userRegisterMessages').text('First name and lastname should be text!');
 			return false;
 		}
 		return true;
@@ -105,11 +63,12 @@ var validator = (function () {
 	}
 
 	return {
-		validateForm: validateForm,
-		validateFormForSubmit: validateFormForSubmit,
 		validatePasswordConformation: validatePasswordConformation,
 		validateUserNames: validateUserNames,
 		validateUserEmail: validateUserEmail,
-		validatePasswordLength: validatePasswordLength
+		validatePasswordLength: validatePasswordLength,
+		validateTextField: validateTextField,
+		validatePrice: validatePrice,
+		validateDate: validateDate
 	}
 } ())
