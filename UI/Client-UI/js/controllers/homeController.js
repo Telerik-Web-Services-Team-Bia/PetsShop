@@ -7,9 +7,6 @@ var homeController = function () {
         templates.get('home')
             .then(function (template) {
                 context.$element().html(template());
-
-
-
             });
     }
 
