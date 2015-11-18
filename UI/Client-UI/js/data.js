@@ -72,8 +72,6 @@ var data = (function () {
         };
     }
 
-
-// Example -------------------------------------------------------------------------------------
     function petsGet() {
         return jsonRequester.get(baseUrl + 'Pets')
           .then(function(res) {
@@ -85,11 +83,11 @@ var data = (function () {
         var options = {
           data: pet,
           headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem(LOCAL_STORAGE_AUTHKEY_KEY),           
+            'Authorization': 'Bearer ' + localStorage.getItem(ACCESS_TOKEN_STORAGE_KEY),           
           }
         };
 
-        return jsonRequester.post('Pets', options)
+        return jsonRequester.post(baseUrl + 'Pets', options)
           .then(function(resp) {
             return resp;
           });
@@ -102,7 +100,6 @@ var data = (function () {
             return res;
           });
     }
-// ----------------------------------------------------------------------------------------------
 
 
     return {
