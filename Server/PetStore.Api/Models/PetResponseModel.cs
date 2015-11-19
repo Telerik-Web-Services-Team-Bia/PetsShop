@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace PetStore.Api.Models
+﻿namespace PetStore.Api.Models
 {
+    using System;
+
     public class PetResponseModel
     {
         public int Id { get; set; }

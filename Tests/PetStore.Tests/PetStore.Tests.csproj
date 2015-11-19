@@ -138,7 +138,9 @@
     <Compile Include="Controllers\CategoriesControllerTests.cs" />
     <Compile Include="Controllers\PetsControllerTests.cs" />
     <Compile Include="IntegrationTests\CategoriesControllerIntegrationTests.cs" />
-    <Compile Include="Mocks\ApplicationUserManagerMock.cs" />
+    <Compile Include="Mocks\ApplicationUserManagerMock.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Mocks\MocksFactory.cs" />
     <Compile Include="Mocks\RepositoryMock.cs" />
     <Compile Include="Services\CategoriesServiceTest.cs" />

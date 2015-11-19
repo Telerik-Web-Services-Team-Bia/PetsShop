@@ -1,15 +1,15 @@
 ﻿namespace PetStore.Api
 {
     using System;
+    using System.Web.Http.Cors;
+
+    using Data;
     using Microsoft.AspNet.Identity;
     using Microsoft.Owin;
     using Microsoft.Owin.Security.Cookies;
     using Microsoft.Owin.Security.OAuth;
     using Owin;
     using PetStore.Api.Providers;
-    using PetStore.Api.Models;
-    using Data;
-    using System.Web.Http.Cors;
 
     public partial class Startup
     {
@@ -19,7 +19,7 @@
        
         public void ConfigureAuth(IAppBuilder app)
         {
-            //app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
+            // app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
 
             // Configure the db context and user manager to use a single instance per request
             app.CreatePerOwinContext(PetStoreDbContext.Create);
@@ -39,6 +39,7 @@
                 Provider = new ApplicationOAuthProvider(PublicClientId),
                 AuthorizeEndpointPath = new PathString("/api/Account/ExternalLogin"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(14),
+                
                 // In production mode set AllowInsecureHttp = false
                 AllowInsecureHttp = true
             };
@@ -47,23 +48,23 @@
             app.UseOAuthBearerTokens(OAuthOptions);
 
             // Uncomment the following lines to enable logging in with third party login providers
-            //app.UseMicrosoftAccountAuthentication(
-            //    clientId: "",
-            //    clientSecret: "");
+            ////app.UseMicrosoftAccountAuthentication(
+            ////    clientId: "",
+            ////    clientSecret: "");
 
-            //app.UseTwitterAuthentication(
-            //    consumerKey: "",
-            //    consumerSecret: "");
+            ////app.UseTwitterAuthentication(
+            ////    consumerKey: "",
+            ////    consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //    appId: "",
-            //    appSecret: "");
+            ////app.UseFacebookAuthentication(
+            ////    appId: "",
+            ////    appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            ////app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            ////{
+            ////    ClientId = "",
+            ////    ClientSecret = ""
+            ////});
         }
     }
 }

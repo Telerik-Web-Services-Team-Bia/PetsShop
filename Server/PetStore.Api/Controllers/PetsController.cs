@@ -1,11 +1,12 @@
 ﻿namespace PetStore.Api.Controllers
 {
-    using AutoMapper.QueryableExtensions;
-    using Models;
     using System.Linq;
     using System.Web.Http;
-    using Microsoft.AspNet.Identity;
     using System.Web.Http.Cors;
+
+    using AutoMapper.QueryableExtensions;
+    using Microsoft.AspNet.Identity;
+    using Models;
     using Services.Data.Contracts;
 
     [EnableCors("*", "*", "*")]

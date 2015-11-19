@@ -87,7 +87,7 @@
         {
             string petName = "New pet name";
             var birthDate = new DateTime(2015, 11, 15);
-            this.petsService.Add(petName, birthDate, "Species name 0", "Category name 0", "", false, 100, "Color name 0", "1", "");
+            this.petsService.Add(petName, birthDate, "Species name 0", "Category name 0", string.Empty, false, 100, "Color name 0", "1", string.Empty);
 
             var pet = this.petsRepo.All().Where(x => x.Name == petName).FirstOrDefault();
 

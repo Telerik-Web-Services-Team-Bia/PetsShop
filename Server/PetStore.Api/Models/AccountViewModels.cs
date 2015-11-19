@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
 
-    // Models returned by AccountController actions.
+    //// Models returned by AccountController actions.
 
     public class ExternalLoginViewModel
     {

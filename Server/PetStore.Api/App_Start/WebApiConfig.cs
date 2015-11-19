@@ -1,8 +1,8 @@
 ﻿namespace PetStore.Api
 {
     using System.Web.Http;
-    using Microsoft.Owin.Security.OAuth;
     using System.Web.Http.Cors;
+    using Microsoft.Owin.Security.OAuth;
 
     public static class WebApiConfig
     {
@@ -17,8 +17,7 @@
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
+                defaults: new { id = RouteParameter.Optional });
         }
     }
 }

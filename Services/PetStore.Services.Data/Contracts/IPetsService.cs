@@ -1,8 +1,9 @@
 ﻿namespace PetStore.Services.Data.Contracts
 {
-    using System.Linq;
-    using Models;
     using System;
+    using System.Linq;
+
+    using Models;
 
     public interface IPetsService
     {

@@ -1,10 +1,10 @@
 ﻿namespace PetStore.Services.Data
 {
-    using System;
-    using PetStore.Services.Data.Contracts;
+    using System.Linq;
+
     using Models;
     using PetStore.Data.Repositories;
-    using System.Linq;
+    using PetStore.Services.Data.Contracts;
 
     public class RatingsService : IRatingsService
     {

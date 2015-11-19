@@ -1,8 +1,9 @@
 ﻿namespace PetStore.Data
 {
+    using System.Data.Entity;
+
     using Microsoft.AspNet.Identity.EntityFramework;
     using Models;
-    using System.Data.Entity;
 
     public class PetStoreDbContext : IdentityDbContext<User>
     {
@@ -28,10 +29,10 @@
             return new PetStoreDbContext();
         }
 
-        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        //{
+        ////protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        ////{
 
-        //    modelBuilder.Entity<Category>().HasMany(i => i.Species).WithRequired().WillCascadeOnDelete(false);
-        //}
+        ////    modelBuilder.Entity<Category>().HasMany(i => i.Species).WithRequired().WillCascadeOnDelete(false);
+        ////}
     }
 }
