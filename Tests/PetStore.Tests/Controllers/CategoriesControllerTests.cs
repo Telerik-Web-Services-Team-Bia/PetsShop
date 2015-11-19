@@ -26,24 +26,6 @@
         }
 
         [TestMethod]
-        public void GetAllShouldHaveCorsEnabled()
-        {
-            this.categoriesController
-                .Calling(c => c.GetAllCategories())
-                .ShouldHave()
-                .ActionAttributes(attr => attr.ContainingAttributeOfType<EnableCorsAttribute>());
-        }
-
-        [TestMethod]
-        public void GetCategoryShouldHaveCorsEnabled()
-        {
-            this.categoriesController
-                .Calling(c => c.GetCategory("some name"))
-                .ShouldHave()
-                .ActionAttributes(attr => attr.ContainingAttributeOfType<EnableCorsAttribute>());
-        }
-
-        [TestMethod]
         public void GetAllShouldReturnOkWithData()
         {
             this.categoriesController
