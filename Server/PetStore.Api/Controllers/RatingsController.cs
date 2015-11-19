@@ -1,12 +1,13 @@
 ﻿namespace PetStore.Api.Controllers
 {
+    using System.Linq;
+    using System.Web.Http;
+    using System.Web.Http.Cors;
+
     using AutoMapper.QueryableExtensions;
     using Microsoft.AspNet.Identity;
     using Models;
     using Services.Data.Contracts;
-    using System.Linq;
-    using System.Web.Http;
-    using System.Web.Http.Cors;
 
     [EnableCors("*", "*", "*")]
     public class RatingsController : ApiController

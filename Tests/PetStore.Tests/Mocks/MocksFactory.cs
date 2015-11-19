@@ -35,14 +35,14 @@
                 ColorId = 1,
                 Color = new Color { Id = 1, Name = "test" },
                 SpeciesId = 1,
-                Species = new Species { Id = 1, Name = "test", CategoryId = 1, Category = new Category {  Id =1, Name = "test"} },
+                Species = new Species { Id = 1, Name = "test", CategoryId = 1, Category = new Category { Id = 1, Name = "test" } },
                 UserId = "test",
-                User = new User {  Age = 1, FirstName = "John", LastName = "Doe"},
+                User = new User { Age = 1, FirstName = "John", LastName = "Doe" },
                 BirthDate = new DateTime(2015, 11, 17),
                 IsVaccinated = true,
                 Description = "Test",
-                Image = new PetImage { Image = "", PetId = 1 },
-                Ratings = new [] { new Rating {  Value = 1} }
+                Image = new PetImage { Image = string.Empty, PetId = 1 },
+                Ratings = new[] { new Rating { Value = 1 } }
             }
         }.AsQueryable();
 

@@ -1,8 +1,9 @@
 ﻿namespace PetStore.Api
 {
-    using PetStore.Models;
-    using Models;
     using System.Linq;
+
+    using Models;
+    using PetStore.Models;
 
     public class AutoMapperConfig
     {

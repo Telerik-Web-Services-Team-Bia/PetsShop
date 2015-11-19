@@ -4,21 +4,22 @@
 namespace PetStore.Api.App_Start
 {
     using System;
+    using System.Data.Entity;
     using System.Web;
+
+    using Data;
+    using Data.Repositories;
 
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 
     using Ninject;
     using Ninject.Web.Common;
-    using Data.Repositories;
-    using System.Data.Entity;
-    using Data;
-    using Services.Data.Contracts;
     using Services.Data;
+    using Services.Data.Contracts;
 
     public static class NinjectConfig 
     {
-        private static readonly Bootstrapper bootstrapper = new Bootstrapper();
+        private static readonly Bootstrapper Bootstrapper = new Bootstrapper();
 
         // should be used only in integration testing scenarios
         public static Action<IKernel> RebindAction { get; set; }
@@ -30,7 +31,7 @@ namespace PetStore.Api.App_Start
         {
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
-            bootstrapper.Initialize(CreateKernel);
+            Bootstrapper.Initialize(CreateKernel);
         }
         
         /// <summary>
@@ -38,7 +39,7 @@ namespace PetStore.Api.App_Start
         /// </summary>
         public static void Stop()
         {
-            bootstrapper.ShutDown();
+            Bootstrapper.ShutDown();
         }
 
         /// <summary>

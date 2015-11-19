@@ -1,11 +1,12 @@
 ﻿namespace PetStore.Services.Data.Contracts
 {
-    using Models;
     using System.Linq;
+
+    using Models;
 
     public interface IRatingsService
     {
-        int Rate(int PetId, string UserId, int value);
+        int Rate(int petId, string userId, int value);
 
         IQueryable<Rating> ByPet(int id);
 
