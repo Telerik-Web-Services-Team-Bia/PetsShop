@@ -39,8 +39,8 @@ var petsController = function () {
                 $('.rating').barrating({
                     theme: 'bootstrap-stars',
                     readonly: true
-                }); 
-            });        
+                });
+            });
     }
 
     function petDetails(context) {
@@ -54,6 +54,8 @@ var petsController = function () {
             })
             .then(function (template) {
                 context.$element().html(template(pet));
+
+                gapi.savetodrive.go('drive');
 
                 $('#rating').barrating({
                     theme: 'bootstrap-stars',
@@ -71,7 +73,7 @@ var petsController = function () {
                                 })
                                 .catch(function (resp) {
                                     toastr.error(resp);
-                                });                                                   
+                                });
                         } else {
                             toastr.error('Only registered users can rate');
                         }
@@ -81,7 +83,7 @@ var petsController = function () {
                 if (pet.Seller !== data.users.current().username) {
                     $('#delete').hide();
 
-                    if (data.users.hasUser()) {                        
+                    if (data.users.hasUser()) {
                         $('#buy').on('click', function() {
                             // magic
                             var email = {
@@ -109,7 +111,7 @@ var petsController = function () {
                                         .catch(function (resp) {
                                             toastr.error(resp);
                                         });
-                                    
+
                                 })
                                 .catch(function (resp) {
                                     toastr.error(resp);
@@ -173,9 +175,9 @@ var petsController = function () {
                             Description: $('#description').val(),
                             Price: $('#price').val(),
                             image: image.split(',')[1]
-                        }; 
+                        };
 
-                        console.log(pet);                       
+                        console.log(pet);
 
                         if (!validator.validateTextField(pet.Category)) {
                             toastr.error('Category is required');

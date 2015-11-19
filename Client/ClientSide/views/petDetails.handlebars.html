@@ -45,7 +45,7 @@
 											{{else}}
 												<span class="col-md-3">No</span>
 											{{/if}}
-											
+
 										</h4>
 									</div>
 									<div class="row">
@@ -78,8 +78,8 @@
 										<h4>
 											<span class="col-md-3 col-md-offset-1">Seller:</span>
 											<div class="col-md-7" id="seller-info">{{Seller}}</div>
-										</h4>										
-									</div>																					
+										</h4>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -87,12 +87,21 @@
 				</p>
 				<h3>Description</h3>
 				<hr>
-				<p class="text-large">{{Description}}</p>				
+				<p class="text-large">{{Description}}</p>
 				<hr>
+				<div class="pull-left">
+					<div id="drive">
+						<div class="g-savetodrive"
+							 data-src="//example.com/path/to/myfile.pdf"
+							 data-filename="My Statement.pdf"
+							 data-sitename="My Company Name">
+						</div>
+					</div>
+				</div>
 				<div class="pull-right">
-					<button class="btn btn-success  btn-lg" id="buy">Buy</button>	
+					<button class="btn btn-success  btn-lg" id="buy">Buy</button>
 					<button class="btn btn-danger btn-lg" id="delete">Delete offer</button>
-				</div>				
+				</div>
 				<br>
 				<br>
 				<br>
