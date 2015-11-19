@@ -2,7 +2,8 @@ var data = (function () {
 
         const USERNAME_STORAGE_KEY = 'username-key',
             ACCESS_TOKEN_STORAGE_KEY = 'access-token',
-            USER_NAME = 'user-name';
+            USER_NAME = 'user-name',
+            EMAIL_URL = 'https://mandrillapp.com/api/1.0/messages/send.json';
 
     var baseUrl = "https://microsoft-apiappd9f14ef7f696440a97a2766f35ce4f77.azurewebsites.net/api/";
 
@@ -67,7 +68,7 @@ var data = (function () {
     function getCurrentUser() {
         var username = localStorage.getItem(USERNAME_STORAGE_KEY);
         if (!username) {
-            return null;
+            return "";
         }
         return {
             username : username
@@ -111,7 +112,21 @@ var data = (function () {
 
     function petById(id) {
         id = id.substring(1);
-        return jsonRequester.get(baseUrl + '	Pets/' + id)
+        return jsonRequester.get(baseUrl + 'Pets/' + id)
+            .then(function(res) {
+              return res;
+            });
+    }
+
+    function petDelete(id) {
+        id = id.substring(1);
+        var options = {
+            headers: {
+              'Authorization': 'Bearer ' + localStorage.getItem(ACCESS_TOKEN_STORAGE_KEY),           
+            }
+        }  
+
+        return jsonRequester.del(baseUrl + 'Pets/' + id, options)
             .then(function(res) {
               return res;
             });
@@ -138,6 +153,17 @@ var data = (function () {
             });
     }
 
+    function sendEmail(email) {
+        var options = {
+            data: email
+        };
+
+        return jsonRequester.post(EMAIL_URL, options)
+            .then(function(resp) {
+                return resp;
+            })
+    }
+
 
     return {
         users: {
@@ -151,13 +177,17 @@ var data = (function () {
         pets: {
             get: petsGet,
             add: petsAdd,
-            getById: petById
+            getById: petById,
+            delete: petDelete
         },
         categories: {
             get: categoriesGet 
         },
         ratings: {
             add: addRating
+        },
+        email: {
+            send: sendEmail
         }
     };
 }());

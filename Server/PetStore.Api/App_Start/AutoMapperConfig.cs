@@ -20,7 +20,9 @@
                 .ForMember(dest => dest.Rating,
                            opts => opts.MapFrom(src => (src.Ratings.Count == 0) ? 0 : (double)src.Ratings.Sum(r => r.Value) / src.Ratings.Count))
                 .ForMember(dest => dest.Image,
-                           opts => opts.MapFrom(src => src.Image.Image));
+                           opts => opts.MapFrom(src => src.Image.Image))
+                .ForMember(dest => dest.Seller,
+                           opts => opts.MapFrom(src => src.User.UserName));
 
             AutoMapper.Mapper.CreateMap<Rating, RatingResponseModel>();
         }

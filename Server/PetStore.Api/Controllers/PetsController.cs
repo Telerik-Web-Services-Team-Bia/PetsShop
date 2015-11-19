@@ -18,13 +18,13 @@
         {
             this.pets = pets;
         }
-        
+
         public IHttpActionResult GetAllPets(string category = null, string sortBy = "ratingDesc")
         {
             var result = this.pets.All(category, sortBy).ProjectTo<PetResponseModel>().ToList();
             return this.Ok(result);
         }
-        
+
         public IHttpActionResult GetPet(int id)
         {
             var result = this.pets.ById(id).ProjectTo<PetResponseModel>().FirstOrDefault();
@@ -90,14 +90,9 @@
                 return this.NotFound();
             }
 
-            if (this.User.Identity.Name == pet.User.UserName)
-            {
-                this.pets.Delete(pet);
+            this.pets.Delete(pet);
 
-                return this.Ok();
-            }
-
-            return this.Unauthorized();
+            return this.Ok();
         }
     }
 }

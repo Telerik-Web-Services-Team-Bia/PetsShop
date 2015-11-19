@@ -1,6 +1,5 @@
 ﻿namespace PetStore.Api.Models
 {
-    using System;
     using System.Collections.Generic;
 
     // Models returned by AccountController actions.

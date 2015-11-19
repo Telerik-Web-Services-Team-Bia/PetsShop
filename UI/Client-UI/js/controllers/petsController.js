@@ -49,7 +49,8 @@ var petsController = function () {
         var id = this.params.id;
         data.pets.getById(id)
             .then(function (res) {
-                pet = res[0];
+                pet = res;
+                pet.BirthDate = new Date(pet.BirthDate).toDateString();
                 return templates.get('petDetails');
             })
             .then(function (template) {
@@ -77,6 +78,61 @@ var petsController = function () {
                         }
                     }
                 });
+
+                if (pet.Seller !== data.users.current().username) {
+                    $('#delete').hide();
+
+                    if (data.users.hasUser()) {                        
+                        $('#buy').on('click', function() {
+                            // magic
+                            var email = {
+                                key: 's4HeE5MkFAWYcidsB1MIsw',
+                                message: {
+                                    html: '<p>Dear seller, your ' + pet.Category + ' ' + pet.Name + ' was sold for ' + pet.Price + '$ to ' + data.users.current().username + '</p>',
+                                    subject: 'example subject',
+                                    from_email: 'petstorebia@gmail.com',
+                                    to: [
+                                        {
+                                            email: pet.Seller,
+                                            type: 'to'
+                                        }
+                                    ]
+                                }
+                            }
+
+                            data.email.send(email)
+                                .then(function () {
+                                    data.pets.delete(id)
+                                        .then(function() {
+                                            context.redirect('#/pets');
+                                            toastr.success('Pet bought, email was sent to seller!');
+                                        })
+                                        .catch(function (resp) {
+                                            toastr.error(resp);
+                                        });
+                                    
+                                })
+                                .catch(function (resp) {
+                                    toastr.error(resp);
+                                });
+                        })
+                    } else {
+                        $('#buy').hide();
+                    }
+
+                } else {
+                    $('#buy').hide();
+                    $('#delete').on('click', function() {
+                        data.pets.delete(id)
+                            .then(function() {
+                                context.redirect('#/pets');
+                                toastr.warning('Offer deleted!');
+                            })
+                            .catch(function (resp) {
+                                toastr.error(resp);
+                            });
+                    })
+                }
             });
     }
 

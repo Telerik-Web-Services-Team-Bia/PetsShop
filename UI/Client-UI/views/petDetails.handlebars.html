@@ -2,7 +2,7 @@
 
 		<div class="panel panel-primary">
 			<div class="panel-heading">
-				<h3 class="panel-title">Offer details</h3>
+				<h4 class="panel-title">Offer details</h4>
 			</div>
 			<div class="panel-body">
 				<p>
@@ -14,31 +14,31 @@
 							<div class="row">
 								<div class="container-fluid">
 									<div class="row">
-										<h3>
+										<h4>
 											<span class="col-md-5 col-md-offset-1">Name:</span>
 											<span class="col-md-3">{{Name}}</span>
-										</h3>
+										</h4>
 									</div>
 									<div class="row">
-										<h3>
+										<h4>
 											<span class="col-md-5 col-md-offset-1">Category:</span>
 											<span class="col-md-3">{{Category}}</span>
-										</h3>
+										</h4>
 									</div>
 									<div class="row">
-										<h3>
+										<h4>
 											<span class="col-md-5 col-md-offset-1">Species:</span>
 											<span class="col-md-3">{{Species}}</span>
-										</h3>
+										</h4>
 									</div>
 									<div class="row">
-										<h3>
+										<h4>
 											<span class="col-md-5 col-md-offset-1">Color:</span>
 											<span class="col-md-3">{{Color}}</span>
-										</h3>
+										</h4>
 									</div>
 									<div class="row">
-										<h3>
+										<h4>
 											<span class="col-md-5 col-md-offset-1">Vaccinated:</span>
 											{{#if isVaccinated}}
 												<span class="col-md-3">Yes</span>
@@ -46,68 +46,56 @@
 												<span class="col-md-3">No</span>
 											{{/if}}
 											
-										</h3>
+										</h4>
 									</div>
 									<div class="row">
-										<h3>
+										<h4>
 											<span class="col-md-5 col-md-offset-1">BirthDate:</span>
 											<span class="col-md-3">{{BirthDate}}</span>
-										</h3>
+										</h4>
 									</div>
 									<div class="row">
-										<h3>
+										<h4>
 											<span class="col-md-5 col-md-offset-1">Price:</span>
 											<span class="col-md-3">${{Price}}</span>
-										</h3>
+										</h4>
 									</div>
 									<div class="row">
-										<h3>
+										<h4>
+											<span class="col-md-3 col-md-offset-1">Rating:</span>
+										</h4>
+										<div class="col-md-7 col-md-offset-1" id="seller-info">
+											<select id="rating">
+											    <option value="1" {{#if_eq_num Rating "1"}} selected="selected" {{/if_eq_num}}>1</option>
+							                    <option value="2" {{#if_eq_num Rating "2"}} selected="selected" {{/if_eq_num}}>2</option>
+							                    <option value="3" {{#if_eq_num Rating "3"}} selected="selected" {{/if_eq_num}}>3</option>
+							                    <option value="4" {{#if_eq_num Rating "4"}} selected="selected" {{/if_eq_num}}>4</option>
+							                    <option value="5" {{#if_eq_num Rating "5"}} selected="selected" {{/if_eq_num}}>5</option>
+											</select>
+										</div>
+									</div>
+									<div class="row">
+										<h4>
 											<span class="col-md-3 col-md-offset-1">Seller:</span>
-										</h3>
-										<div class="col-md-7" id="seller-info"></div>
-									</div>												
+											<div class="col-md-7" id="seller-info">{{Seller}}</div>
+										</h4>										
+									</div>																					
 								</div>
 							</div>
 						</div>
 					</div>
 				</p>
-				<h2>Description</h2>
+				<h3>Description</h3>
 				<hr>
-				<p class="text-large">{{Description}}</p>
-				<select id="rating">
-				    <option value="1" {{#if_eq_num Rating "1"}} selected="selected" {{/if_eq_num}}>1</option>
-                    <option value="2" {{#if_eq_num Rating "2"}} selected="selected" {{/if_eq_num}}>2</option>
-                    <option value="3" {{#if_eq_num Rating "3"}} selected="selected" {{/if_eq_num}}>3</option>
-                    <option value="4" {{#if_eq_num Rating "4"}} selected="selected" {{/if_eq_num}}>4</option>
-                    <option value="5" {{#if_eq_num Rating "5"}} selected="selected" {{/if_eq_num}}>5</option>
-				</select>
-				<hr>			
-				<button class="btn btn-primary btn-xs" id="share">Share of Facebook</button>
+				<p class="text-large">{{Description}}</p>				
+				<hr>
+				<div class="pull-right">
+					<button class="btn btn-success  btn-lg" id="buy">Buy</button>	
+					<button class="btn btn-danger btn-lg" id="delete">Delete offer</button>
+				</div>				
+				<br>
+				<br>
+				<br>
 			</div>
 		</div>
-
-	<!-- /*<script type="text/x-mustache-template" id="seller-details">
-		<ul class="nav nav-tabs">
-			<li class="active"><a href="#username" data-toggle="tab" aria-expanded="false">Username</a></li>
-			<li ><a href="#email" data-toggle="tab" aria-expanded="true">Email</a></li>
-			<li ><a href="#phone" data-toggle="tab" aria-expanded="true">Phone</a></li>					
-		</ul>
-		<div id="myTabContent" class="tab-content">
-			<div class="tab-pane fade active in" id="username">
-				<p class="lead">{{firstName}} {{lastName}}</p>
-			</div>
-			<div class="tab-pane fade" id="email">
-				<p class="lead">{{email}}</p>
-			</div>
-			<div class="tab-pane fade" id="phone">
-				<p class="lead">
-					{{#phone}}
-						{{phone}}
-					{{/phone}}
-					{{^phone}}
-						Not available
-					{{/phone}}
-				</p>
-		</div>
-	</script>*/  -->
 </div>
