@@ -1,13 +1,14 @@
 ﻿namespace PetStore.Tests.Controllers
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using MyTested.WebApi;
+    using System.Collections.Generic;
+    using System.Linq;
+
     using Api.Controllers;
+    using Api.Models;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Mocks;
     using Models;
-    using Api.Models;
-    using System.Linq;
-    using System.Collections.Generic;
+    using MyTested.WebApi;
 
     [TestClass]
     public class PetsControllerTests
@@ -23,15 +24,20 @@
 
             AutoMapper.Mapper.CreateMap<Pet, PetResponseModel>();
             AutoMapper.Mapper.CreateMap<Pet, PetResponseModel>()
-                .ForMember(dest => dest.Color,
+                .ForMember(
+                    dest => dest.Color,
                            opts => opts.MapFrom(src => src.Color.Name))
-                .ForMember(dest => dest.Species,
+                .ForMember(
+                    dest => dest.Species,
                            opts => opts.MapFrom(src => src.Species.Name))
-                .ForMember(dest => dest.Category,
+                .ForMember(
+                    dest => dest.Category,
                            opts => opts.MapFrom(src => src.Species.Category.Name))
-                .ForMember(dest => dest.Rating,
+                .ForMember(
+                    dest => dest.Rating,
                            opts => opts.MapFrom(src => (src.Ratings.Count == 0) ? 0 : (double)src.Ratings.Sum(r => r.Value) / src.Ratings.Count))
-                .ForMember(dest => dest.Image,
+                .ForMember(
+                    dest => dest.Image,
                            opts => opts.MapFrom(src => src.Image.Image));
         }
 
@@ -101,6 +107,98 @@
                 .Created()
                 .WithResponseModelOfType<int>()
                 .Passing(x => x == 1);
+        }
+
+        [TestMethod]
+        public void PutShouldHaveAuthorizeAttribute()
+        {
+            this.petsController
+                .Calling(p => p.Put(null))
+                .ShouldHave()
+                .ActionAttributes(attr => attr.RestrictingForAuthorizedRequests());
+        }
+
+        [TestMethod]
+        public void PutShouldReturnBadRequestWhenModelIsNull()
+        {
+            this.petsController
+                .Calling(p => p.Put(null))
+                .ShouldReturn()
+                .BadRequest();
+        }
+
+        [TestMethod]
+        public void PutShouldReturnBadRequestWhenModelIsInvalid()
+        {
+            this.petsController
+                .Calling(p => p.Put(MocksFactory.GetInvalidPetRequestModel()))
+                .ShouldReturn()
+                .BadRequest();
+        }
+
+        [TestMethod]
+        public void PutShouldReturnNotFoundWhenPetIdIsNonexistent()
+        {
+            var petRequest = MocksFactory.GetValidPetRequestModel();
+            petRequest.Id = -1;
+
+            this.petsController
+                .Calling(p => p.Put(petRequest))
+                .ShouldReturn()
+                .NotFound();
+        }
+
+        [TestMethod]
+        public void PutShouldReturnUnauthorizedWhenRequestedPetHasAnotherOwner()
+        {
+            var petRequest = MocksFactory.GetValidPetRequestModel();
+            petRequest.Id = 1;
+
+            this.petsController
+                .WithAuthenticatedUser()
+                .Calling(p => p.Put(petRequest))
+                .ShouldReturn()
+                .Unauthorized();
+        }
+
+        [TestMethod]
+        public void PutShouldReturnCreatedWhenModelIsValidAndUserIsPetOwner()
+        {
+            var petRequest = MocksFactory.GetValidPetRequestModel();
+            petRequest.Id = 5;
+
+            this.petsController
+                .WithAuthenticatedUser()
+                .Calling(p => p.Put(petRequest))
+                .ShouldReturn()
+                .Created();
+        }
+
+        [TestMethod]
+        public void DeleteShouldHaveAuthorizeAttribute()
+        {
+            this.petsController
+                .Calling(p => p.Delete(0))
+                .ShouldHave()
+                .ActionAttributes(attr => attr.RestrictingForAuthorizedRequests());
+        }
+
+        [TestMethod]
+        public void DeleteShouldReturnNotFoundWhenPetIdIsNonexistent()
+        {
+            this.petsController
+                .Calling(p => p.Delete(-1))
+                .ShouldReturn()
+                .NotFound();
+        }
+
+        [TestMethod]
+        public void DeleteShouldReturnOkWhenPetIdIsExistent()
+        {
+            this.petsController
+                .Calling(p => p.Delete(1))
+                .ShouldReturn()
+                .Ok();
         }
     }
 }

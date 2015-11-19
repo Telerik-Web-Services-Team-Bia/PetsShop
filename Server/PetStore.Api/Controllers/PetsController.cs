@@ -58,6 +58,11 @@
         [Authorize]
         public IHttpActionResult Put(PetRequestModel pet)
         {
+            if (pet == null)
+            {
+                return this.BadRequest();
+            }
+
             if (!this.ModelState.IsValid)
             {
                 return this.BadRequest(this.ModelState);
@@ -73,7 +78,7 @@
             if (this.User.Identity.Name == petToUpdate.User.UserName)
             {
                 var result = this.pets.Add(pet.Name, pet.BirthDate, pet.Species, pet.Category, pet.Description, pet.IsVaccinated, pet.Price, pet.Color, User.Identity.GetUserId(), pet.Image, petToUpdate);
-
+                
                 return this.Created(this.Url.ToString(), result);
             }
 

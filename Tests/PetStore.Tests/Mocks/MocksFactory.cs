@@ -135,6 +135,11 @@
             petsService.Setup(x => x.All(It.IsAny<string>(), It.IsAny<string>())).Returns(pets);
             petsService.Setup(x => x.ById(It.Is<int>(i => i == 1))).Returns(pets);
             petsService.Setup(x => x.ById(It.Is<int>(i => i == -1))).Returns(new List<Pet>().AsQueryable());
+
+            var myUser = new User { UserName = "TestUser", Email = "TestUser@mail.com" };
+            var myPet = new Pet { User = myUser };
+            petsService.Setup(x => x.ById(It.Is<int>(i => i == 5))).Returns(new List<Pet> { myPet }.AsQueryable());
+
             petsService.Setup(x => x.Add(
                 It.IsAny<string>(),
                 It.IsAny<DateTime>(),
@@ -148,6 +153,8 @@
                 It.IsAny<byte[]>(),
                 It.IsAny<Pet>()))
                 .Returns(1);
+
+            petsService.Setup(x => x.Delete(It.IsAny<Pet>()));
 
             return petsService.Object;
         }
@@ -186,7 +193,7 @@
                 Species = "test",
                 Category = "test",
                 Description = "test",
-                Price = 10
+                Price = ModelsConstants.PetMinPrice + 1
             };
         }
     }
