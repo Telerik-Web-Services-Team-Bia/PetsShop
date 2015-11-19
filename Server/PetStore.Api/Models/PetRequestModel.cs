@@ -34,6 +34,6 @@
         [Range(ModelsConstants.PetMinPrice, ModelsConstants.PetMaxPrice)]
         public decimal Price { get; set; }
 
-        public byte[] Image { get; set; }
+        public string Image { get; set; }
     }
 }

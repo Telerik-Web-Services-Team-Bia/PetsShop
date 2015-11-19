@@ -11,6 +11,6 @@
         public virtual Pet Pet { get; set; }
 
         [Required]
-        public byte[] Image { get; set; }
+        public string Image { get; set; }
     }
 }

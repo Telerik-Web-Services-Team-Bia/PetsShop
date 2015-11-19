@@ -24,7 +24,7 @@ namespace PetStore.Api.Models
 
         public double Rating { get; set; }
 
-        public byte[] Image { get; set; }
+        public string Image { get; set; }
 
         public string Seller { get; set; }
     }

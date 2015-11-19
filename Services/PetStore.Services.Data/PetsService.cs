@@ -25,7 +25,7 @@
             this.colors = colors;
         }
 
-        public int Add(string name, DateTime birthDate, string speciesName, string categoryName, string description, bool isVaccinated, decimal price, string color, string userId, byte[] image, Pet pet = null)
+        public int Add(string name, DateTime birthDate, string speciesName, string categoryName, string description, bool isVaccinated, decimal price, string color, string userId, string image, Pet pet = null)
         {
             var currentPetSpecies = new Species();
             var species = this.species.All().Where(s => s.Name == speciesName).ToList();

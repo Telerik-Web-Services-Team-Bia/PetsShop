@@ -40,7 +40,7 @@
                 BirthDate = new DateTime(2015, 11, 17),
                 IsVaccinated = true,
                 Description = "Test",
-                Image = new PetImage { Image = new byte[1], PetId = 1 },
+                Image = new PetImage { Image = "", PetId = 1 },
                 Ratings = new [] { new Rating {  Value = 1} }
             }
         }.AsQueryable();
@@ -150,7 +150,7 @@
                 It.IsAny<decimal>(),
                 It.IsAny<string>(),
                 It.IsAny<string>(),
-                It.IsAny<byte[]>(),
+                It.IsAny<string>(),
                 It.IsAny<Pet>()))
                 .Returns(1);
 

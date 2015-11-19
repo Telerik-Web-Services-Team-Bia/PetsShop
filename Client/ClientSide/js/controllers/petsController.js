@@ -25,7 +25,6 @@ var petsController = function () {
                         } else {
                             url += '?sortBy=' + encodeURIComponent($("#sortBy").val());
                         }
-
                     }
 
                     url = url.replace(/\&$/, '');
@@ -143,6 +142,25 @@ var petsController = function () {
                 .then(function (template) {
                     context.$element().html(template());
 
+                    var image;
+
+                    $('#image').change(function () {
+                            var preview = document.querySelector('img');
+                            var file    = document.querySelector('input[type=file]').files[0];
+                            var reader  = new FileReader();
+
+                            reader.onloadend = function () {
+                                preview.src = reader.result;
+                                image = reader.result;
+                            }
+
+                            if (file) {
+                                reader.readAsDataURL(file);
+                            } else {
+                                preview.src = "";
+                            }
+                        })
+
                     $('#submitOffer').on('click', function () {
 
                         var pet = {
@@ -154,8 +172,10 @@ var petsController = function () {
                             IsVaccinated: $('input[name=vaccinated]:checked', '#petForm').val(),
                             Description: $('#description').val(),
                             Price: $('#price').val(),
-                            Image: $('#image').val()
-                        };
+                            image: image.split(',')[1]
+                        }; 
+
+                        console.log(pet);                       
 
                         if (!validator.validateTextField(pet.Category)) {
                             toastr.error('Category is required');

@@ -10,7 +10,7 @@
 
         IQueryable<Pet> ById(int id);
 
-        int Add(string name, DateTime birthDate, string speciesName, string categoryName, string description, bool isVaccinated, decimal price, string color, string userId, byte[] image, Pet pet = null);
+        int Add(string name, DateTime birthDate, string speciesName, string categoryName, string description, bool isVaccinated, decimal price, string color, string userId, string image, Pet pet = null);
 
         void Delete(Pet pet);
     }
