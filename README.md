@@ -8,12 +8,13 @@
 - Denica Dimitrova
 - Nikolai Mishev
 - Ivaylo Andonov
->Pet Store Diagram
+
+*Pet Store Diagram*
 ![Draft image for Pet Store](http://oi67.tinypic.com/2d8hpjp.jpg)
 
 ## Pet Store Description
 
-The project name is Bia`s Pet Store, which is multi-spa application, hosted on Azure service and client sides. The main purpose of the app is to help different people to find,shelter,offer and rate the sweetiest and cute PET for them. You can see the shared base of pets, choose the best pet for you ,rate the pets, leave offer for selling a pet, ask questions to our support 24/7 and more. All the content in the application is user-generated.
+The project name is Bia`s Pet Store, which is multi-spa application hosted on Azure Web services, back and front sides both. The main purpose of the app is to help different people to find,shelter or offer the right and sweetiest PET for them. In our store you can see the shared base of pets, choose the best pet for you ,rate the pets, leave offer for selling a pet, ask questions to our support 24/7 and more. All the content in the application is user-generated.
 
 `User Roles`
  * **Not Registered users**
