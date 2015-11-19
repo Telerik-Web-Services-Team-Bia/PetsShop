@@ -267,6 +267,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\PetStore.Api%28PetStore%29.pubxml" />
+    <Content Include="ServiceClassDiagram.cd" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

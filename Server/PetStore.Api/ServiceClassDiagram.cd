@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="PetStore.Api.AutoMapperConfig" Collapsed="true">
+    <Position X="3.5" Y="4.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\AutoMapperConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PetStore.Api.DatabaseConfig" Collapsed="true">
+    <Position X="3.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\DatabaseConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PetStore.Api.ApplicationUserManager" Collapsed="true">
+    <Position X="5.5" Y="5.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\IdentityConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PetStore.Api.Startup" Collapsed="true">
+    <Position X="14.25" Y="7" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAAAAAEAgIAAAAAAAAA=</HashCode>
+      <FileName>App_Start\Startup.Auth.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PetStore.Api.WebApiConfig" Collapsed="true">
+    <Position X="3.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\WebApiConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PetStore.Api.WebApiApplication" Collapsed="true">
+    <Position X="14.25" Y="6.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Global.asax.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PetStore.Api.App_Start.NinjectConfig" Collapsed="true">
+    <Position X="3.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAACAAAQACAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\NinjectConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PetStore.Api.Controllers.AccountController">
+    <Position X="1" Y="0.5" Width="2" />
+    <NestedTypes>
+      <Class Name="PetStore.Api.Controllers.AccountController.ExternalLoginData" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Controllers\AccountController.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="PetStore.Api.Controllers.AccountController.RandomOAuthStateGenerator" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Controllers\AccountController.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>EAAAFACAACAAgQAAEAARAgIAABABEBAAAAAAgAAAAQA=</HashCode>
+      <FileName>Controllers\AccountController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PetStore.Api.Controllers.CategoriesController">
+    <Position X="5" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>ACQAAAAAAAAAAAAAAAAAAAAQCAEAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\CategoriesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PetStore.Api.Controllers.PetsController">
+    <Position X="3.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAIAAAAAAAAAAICAEAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Controllers\PetsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PetStore.Api.Controllers.RatingsController">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAIACAEAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Controllers\RatingsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PetStore.Api.Models.RegisterBindingModel">
+    <Position X="9.75" Y="5.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAACAAAAAAAEAAAAAAAAAAAAACAAAAAAAAIAg=</HashCode>
+      <FileName>Models\AccountBindingModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PetStore.Api.Models.ExternalLoginViewModel">
+    <Position X="9.75" Y="0.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAACAAABAAAAAA=</HashCode>
+      <FileName>Models\AccountViewModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PetStore.Api.Models.ManageInfoViewModel" Collapsed="true">
+    <Position X="5.5" Y="5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAQAAAAAAAAAAAAAQAQAAAAAAA=</HashCode>
+      <FileName>Models\AccountViewModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PetStore.Api.Models.UserLoginInfoViewModel">
+    <Position X="14.25" Y="4.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAAAAAAAAA=</HashCode>
+      <FileName>Models\AccountViewModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PetStore.Api.Models.CategoryDataTransferModel">
+    <Position X="9.75" Y="4.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\CategoryDataTransferModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PetStore.Api.Models.PetRequestModel">
+    <Position X="14.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAGAAAAAQAgAAAAAAAAAAQAAABAABAAAAAAgAAACAA=</HashCode>
+      <FileName>Models\PetRequestModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PetStore.Api.Models.PetResponseModel">
+    <Position X="12.25" Y="0.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAGAAAAAQAgAAAAAAAAAAQAAABAABEAAAAAgAAACAA=</HashCode>
+      <FileName>Models\PetResponseModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PetStore.Api.Models.RatingRequestModel">
+    <Position X="9.75" Y="2.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Models\RatingRequestModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PetStore.Api.Models.RatingResponseModel">
+    <Position X="12.25" Y="4.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABAAgAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Models\RatingResponseModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PetStore.Api.Providers.ApplicationOAuthProvider" Collapsed="true">
+    <Position X="5.5" Y="6.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAACAAAAAAAAAAAAAEAAEIAAAAAAAAAAAgA=</HashCode>
+      <FileName>Providers\ApplicationOAuthProvider.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PetStore.Api.Results.ChallengeResult" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Results\ChallengeResult.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
