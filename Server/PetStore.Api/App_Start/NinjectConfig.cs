@@ -20,6 +20,9 @@ namespace PetStore.Api.App_Start
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
 
+        // should be used only in integration testing scenarios
+        public static Action<IKernel> RebindAction { get; set; }
+        
         /// <summary>
         /// Starts the application
         /// </summary>
@@ -37,7 +40,7 @@ namespace PetStore.Api.App_Start
         {
             bootstrapper.ShutDown();
         }
-        
+
         /// <summary>
         /// Creates the kernel that will manage your application.
         /// </summary>

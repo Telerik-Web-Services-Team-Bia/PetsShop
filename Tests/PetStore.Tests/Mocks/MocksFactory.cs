@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
 
+    using Api;
     using Api.Models;
     using Common;
     using Models;
@@ -44,6 +45,11 @@
                 Ratings = new [] { new Rating {  Value = 1} }
             }
         }.AsQueryable();
+
+        public static ApplicationUserManager ApplicationUserManager
+        {
+            get { return ApplicationUserManagerMock.Create(); }
+        }
 
         public static RepositoryMock<Category> GetCategoriesRepository(int categoriesCount = 5)
         {
