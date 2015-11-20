@@ -56,17 +56,6 @@ var petsController = function () {
                 context.$element().html(template(pet));
 
                 gapi.savetodrive.go('drive');
-                function WriteToFile()
-                {
-                    var txt = new ActiveXObject("Scripting.FileSystemObject");
-                    var s = txt.CreateTextFile("Test.txt", true);
-                    s.WriteLine(pet.Name);
-                    s.WriteLine(pet.Category);
-                    s.WriteLine(pet.BirthDate);
-                    s.WriteLine(pet.Color);
-                    s.WriteLine(pet.Description);
-                    s.Close();
-                }
 
                 $('#rating').barrating({
                     theme: 'bootstrap-stars',

@@ -1480,6 +1480,7 @@
     <Content Include="js\helpers\validators.js" />
     <Content Include="js\json-requester.js" />
     <Content Include="js\templates.js" />
+    <Content Include="pet-info.txt" />
     <Content Include="video\cat.mp4" />
     <Content Include="views\addPet.handlebars.html" />
     <Content Include="views\categoriesMenu.handlebars.html" />

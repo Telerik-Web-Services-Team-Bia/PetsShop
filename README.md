@@ -3,8 +3,8 @@
 # Web Services Team "Bia" 
 ###### Repository link: https://github.com/Telerik-Web-Services-Team-Bia
 ### Team Members
-- Nikolay Novrishki
-- Ivalina Popova
+- Nikolay Novkirishki
+- Ivelina Popova
 - Denica Dimitrova
 - Nikolai Mishev
 - Ivaylo Andonov
