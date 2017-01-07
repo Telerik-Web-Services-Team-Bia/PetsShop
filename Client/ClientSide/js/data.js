@@ -1,11 +1,10 @@
 var data = (function () {
 
-        const USERNAME_STORAGE_KEY = 'username-key',
-            ACCESS_TOKEN_STORAGE_KEY = 'access-token',
-            USER_NAME = 'user-name',
-            EMAIL_URL = 'https://mandrillapp.com/api/1.0/messages/send.json';
+    const USERNAME_STORAGE_KEY = 'username-key',
+        ACCESS_TOKEN_STORAGE_KEY = 'access-token',
+        USER_NAME = 'user-name';
 
-    var baseUrl = "https://microsoft-apiappd9f14ef7f696440a97a2766f35ce4f77.azurewebsites.net/api/";
+    var baseUrl = "http://localhost:8089/api/";
 
     function userLogin(user) {
         var promise = new Promise(function (resolve, reject) {
@@ -153,12 +152,9 @@ var data = (function () {
             });
     }
 
-    function sendEmail(email) {
-        var options = {
-            data: email
-        };
+    function sendEmail(emailUrl) {
 
-        return jsonRequester.post(EMAIL_URL, options)
+        return jsonRequester.post(emailUrl) 
             .then(function(resp) {
                 return resp;
             })

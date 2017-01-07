@@ -1,6 +1,3 @@
-/**
- * Created by nikol on 18.11.2015 ã..
- */
 var chatController = function(){
 
     var init = function(context){

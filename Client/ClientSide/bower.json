@@ -16,8 +16,10 @@
     "jquery-ui": "~1.11.4",
     "moment": "~2.10.6",
     "sammy": "~0.7.6",
-    "sha1": "http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha1.js",
+    "sha1": "https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/sha1.js",
     "toastr": "~2.1.2",
-    "underscore": "~1.8.3"
+    "underscore": "~1.8.3",
+    "jquery-bar-rating": "~1.2.1",
+    "bootstrap": "~3.3.7"
   }
 }

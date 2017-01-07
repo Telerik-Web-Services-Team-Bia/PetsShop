@@ -86,22 +86,11 @@ var petsController = function () {
                     if (data.users.hasUser()) {
                         $('#buy').on('click', function() {
                             // magic
-                            var email = {
-                                key: 's4HeE5MkFAWYcidsB1MIsw',
-                                message: {
-                                    html: '<p>Dear seller, your ' + pet.Category + ' ' + pet.Name + ' was sold for ' + pet.Price + '$ to ' + data.users.current().username + '</p>',
-                                    subject: 'example subject',
-                                    from_email: 'petstorebia@gmail.com',
-                                    to: [
-                                        {
-                                            email: pet.Seller,
-                                            type: 'to'
-                                        }
-                                    ]
-                                }
-                            }
+                            var emailUrl = "https://api.elasticemail.com/v2/email/send?apikey=46d23ca0-3dd2-4d87-bb50-479e9ab5db20&subject=Pet%20bought&from=petstorepiss@gmail.com" +
+                                "&to=" + pet.Seller +
+                                "&bodyText=" + "Dear%20seller,%20your%20" + pet.Category + '%20' + pet.Name + '%20was%20sold%20for%20' + pet.Price + '$%20to%20' + data.users.current().username;
 
-                            data.email.send(email)
+                            data.email.send(emailUrl)
                                 .then(function () {
                                     data.pets.delete(id)
                                         .then(function() {

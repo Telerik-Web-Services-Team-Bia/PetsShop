@@ -12,17 +12,20 @@
         private IRepository<Species> species;
         private IRepository<Category> categories;
         private IRepository<Color> colors;
+        private IRepository<PetImage> images;
 
         public PetsService(
             IRepository<Pet> pets,
             IRepository<Species> species,
             IRepository<Category> categories,
-            IRepository<Color> colors)
+            IRepository<Color> colors,
+            IRepository<PetImage> images)
         {
             this.pets = pets;
             this.species = species;
             this.categories = categories;
             this.colors = colors;
+            this.images = images;
         }
 
         public int Add(string name, DateTime birthDate, string speciesName, string categoryName, string description, bool isVaccinated, decimal price, string color, string userId, string image, Pet pet = null)
@@ -135,6 +138,7 @@
 
         public void Delete(Pet pet)
         {
+            this.images.Delete(pet.Image);
             this.pets.Delete(pet);
             this.pets.SaveChanges();
         }
